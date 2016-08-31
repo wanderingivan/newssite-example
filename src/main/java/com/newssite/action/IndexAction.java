@@ -8,18 +8,13 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
-import org.apache.struts2.util.SubsetIteratorFilter.Decider;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import com.newssite.action.article.BaseArticleAction;
+import com.newssite.action.article.AbstractArticleAction;
 import com.newssite.model.Article;
-import com.newssite.service.ArticleService;
-import com.newssite.service.MessageService;
-import com.opensymphony.xwork2.ActionSupport;
 
 @ParentPackage(value="index")
 @Results({@Result(name="success",type="tiles",location="indexLayout")})
-public class IndexAction extends BaseArticleAction {
+public class IndexAction extends AbstractArticleAction {
 
 	/**
 	 * 
