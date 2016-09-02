@@ -1,0 +1,102 @@
+<!ELEMENT dataset (
+    users*,
+    articles*,
+    paragraphs*,
+    comments*,
+    groups+,
+    group_authorities+,
+	group_members+,
+	chats+,
+	messages+,
+	chats_join_table+,
+    tasks*
+)>
+
+<!ELEMENT users EMPTY>
+<!ATTLIST users
+    user_id CDATA #IMPLIED
+    username CDATA #REQUIRED
+    email CDATA #REQUIRED
+    password CDATA #REQUIRED
+    enabled CDATA #REQUIRED
+    details CDATA #IMPLIED
+    imagePath CDATA #IMPLIED
+>
+
+<!ELEMENT articles EMPTY>
+<!ATTLIST articles
+    article_id CDATA #IMPLIED
+    headline CDATA #REQUIRED
+    author_id CDATA #REQUIRED
+    category CDATA #REQUIRED
+    caption CDATA #REQUIRED
+    imagePath CDATA #IMPLIED
+    lastEdited CDATA #IMPLIED
+    hits CDATA #IMPLIED
+>
+
+<!ELEMENT paragraphs EMPTY>
+<!ATTLIST paragraphs
+	paragraph_id CDATA #IMPLIED
+	text CDATA #REQUIRED
+	article_id CDATA #REQUIRED
+	article_order CDATA #REQUIRED
+>
+
+<!ELEMENT comments EMPTY>
+<!ATTLIST comments 
+	comment_id CDATA #IMPLIED
+	message CDATA #REQUIRED
+	posted CDATA #IMPLIED
+	poster_id CDATA #REQUIRED
+	article_id CDATA #REQUIRED
+>
+
+<!ELEMENT groups EMPTY>
+<!ATTLIST groups 
+	id CDATA #IMPLIED
+	group_name CDATA #REQUIRED
+>
+
+<!ELEMENT group_members EMPTY>
+<!ATTLIST group_members 
+	id CDATA #IMPLIED
+	username CDATA #REQUIRED
+	group_id CDATA #REQUIRED
+>
+
+<!ELEMENT group_authorities EMPTY>
+<!ATTLIST group_authorities 
+	group_id CDATA #REQUIRED
+	authority CDATA #REQUIRED
+>
+
+<!ELEMENT chats EMPTY>
+<!ATTLIST chats
+	chat_id CDATA #IMPLIED
+	lastUpdate CDATA #IMPLIED 
+>
+
+<!ELEMENT messages EMPTY>
+<!ATTLIST messages 
+	message_id CDATA #IMPLIED
+	message CDATA #REQUIRED
+	posted CDATA #IMPLIED
+	poster_id CDATA #REQUIRED
+	chat_id CDATA #REQUIRED
+>
+
+<!ELEMENT chats_join_table EMPTY>
+<!ATTLIST chats_join_table
+	user_id CDATA #REQUIRED 
+	chat_id CDATA #REQUIRED
+>
+
+<!ELEMENT tasks EMPTY>
+<!ATTLIST tasks
+	task_id CDATA #IMPLIED
+	name CDATA #REQUIRED
+	description CDATA #REQUIRED
+	assigner CDATA #REQUIRED
+	assignee CDATA #REQUIRED
+>
