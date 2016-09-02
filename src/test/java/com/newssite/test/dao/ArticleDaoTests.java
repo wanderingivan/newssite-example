@@ -3,11 +3,9 @@ package com.newssite.test.dao;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.collections.OrderedMap;
 import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
@@ -18,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.newssite.dao.ArticleDao;
 import com.newssite.model.Article;
 import com.newssite.model.User;
-import com.newssite.util.CommonUtility;
 
 public class ArticleDaoTests extends AbstractDaoTest {
 
@@ -31,6 +28,7 @@ public class ArticleDaoTests extends AbstractDaoTest {
 	private ArticleDao articleDao;
 	
 	@Test 
+	@Transactional
 	public void testCreateArticle(){
 		String [] paragraphs = new String [] {"paragraph","paragraph","paragraph"};
 		Article test = new Article(testArticleCreate,"caption","politics",null);
@@ -41,6 +39,7 @@ public class ArticleDaoTests extends AbstractDaoTest {
 	}
 	
 	@Test
+	@Transactional
 	public void testArticleRetrieve(){
 		Article article = getArticle(testArticle);
 		assertEquals("Incorrect article retrieved",testArticle,article.getHeadline());
@@ -49,6 +48,7 @@ public class ArticleDaoTests extends AbstractDaoTest {
 	}
 
 	@Test
+	@Transactional
 	public void testGetLatest(){
 		List<Article> latest = articleDao.latest();
 		assertEquals("Incorrect number of articles retrieved",8,latest.size());
@@ -56,6 +56,7 @@ public class ArticleDaoTests extends AbstractDaoTest {
 	}
 	
 	@Test
+	@Transactional
 	public void testArticleUpdate(){
 		String [] paragraphs = new String [] {"paragraph","paragraph","paragraph","4th paragraph"};
 		Article test = new Article(testArticleUpdate,"new text", "new category",null);
@@ -68,12 +69,14 @@ public class ArticleDaoTests extends AbstractDaoTest {
 	}
 	
 	@Test
+	@Transactional
 	public void testArticleDelete(){
 		articleDao.deleteArticle(5);
 		assertNull("Article was not deleted",articleDao.retrieveArticle(testArticleDelete));
 	}
 	
 	@Test
+	@Transactional
 	public void testAuthorRetrieval(){
 		Article test = getArticle("headline2");
 		User user = test.getAuthor();
@@ -82,12 +85,14 @@ public class ArticleDaoTests extends AbstractDaoTest {
 	}
 	
 	@Test
+	@Transactional
 	public void testCommentsRetrieval(){
 		Article test = getArticle(testArticle);
 		assertEquals("Incorrect number of comments retrieved",3,test.getComments().size());
 	}
 	
 	@Test
+	@Transactional
 	public void testFindArticles(){
 		List<Article> articles = articleDao.findArticles("headline");
 		assertNotNull(articles);
@@ -95,6 +100,7 @@ public class ArticleDaoTests extends AbstractDaoTest {
 	}
 
 	@Test
+	@Transactional
 	public void testFindByCategory(){
 		String[] categories = new String []{"politics","international","sports","entertainment"};
 		Map<String,String> articles = null;
@@ -106,11 +112,13 @@ public class ArticleDaoTests extends AbstractDaoTest {
 	}
 
 	@Test
+	@Transactional
 	public void testGetMostViewed(){
 		Map<String,String> articles =  articleDao.getMostViewed();
 	}
 	
 	@Test
+	@Transactional
 	public void testGetMostCommented(){
 		Map<String,String> articles =  articleDao.getMostCommented();
 	}

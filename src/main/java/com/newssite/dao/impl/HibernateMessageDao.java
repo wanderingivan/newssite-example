@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.SortedSet;
 
-import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

@@ -18,7 +18,6 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.newssite.dao.ArticleDao;
@@ -46,7 +45,6 @@ public class HibernateArticleDao extends AbstractHibernateDao<Article> implement
 	
 
 	@Override
-	@Transactional
 	public long createArticle(Article article, String author,List<String> paragraphs){
 		Session session = getSession();
 		if(logger.isDebugEnabled()){
@@ -69,7 +67,6 @@ public class HibernateArticleDao extends AbstractHibernateDao<Article> implement
 	}
 	
 	@Override
-	@Transactional
 	public Article retrieveArticle(String headline){
 			Session session = getSession();
 			Criteria crit = session.createCriteria(Article.class)
@@ -83,7 +80,6 @@ public class HibernateArticleDao extends AbstractHibernateDao<Article> implement
 	}
 	
 	@Override
-	@Transactional
 	public void editArticle(Article update,List<String> paragraphs){
 		Article article = load(update.getId());
 		article.setHeadline(update.getHeadline());
@@ -96,7 +92,6 @@ public class HibernateArticleDao extends AbstractHibernateDao<Article> implement
 	}
 
 	@Override
-	@Transactional
 	public void deleteArticle(long id) {
 		createQuery("DELETE FROM articles WHERE id=:id")
 				   .setLong("id", id)
@@ -104,7 +99,6 @@ public class HibernateArticleDao extends AbstractHibernateDao<Article> implement
 	}
 
 	@Override
-	@Transactional
 	@SuppressWarnings("unchecked")
 	public List<Article> findArticles(String headline){
 		StringBuilder  restrictionBuilder = new StringBuilder("%").append(headline)
@@ -117,7 +111,6 @@ public class HibernateArticleDao extends AbstractHibernateDao<Article> implement
 	}
 	
 	@Override
-	@Transactional
 	@SuppressWarnings("unchecked")
 	public List<Comment> loadArticleComments(String headline,int min){
 		return createCriteria()
@@ -128,7 +121,6 @@ public class HibernateArticleDao extends AbstractHibernateDao<Article> implement
 	}
 	
 	@Override
-	@Transactional
 	@SuppressWarnings("unchecked")
 	public List<Article> loadArticlesByCategory(String category){
 		return createCriteria()
@@ -140,7 +132,6 @@ public class HibernateArticleDao extends AbstractHibernateDao<Article> implement
 	}
 	
 	@Override
-	@Transactional
 	@SuppressWarnings("unchecked")
 	public List<Article> latest(){
 		return createCriteria()
@@ -150,7 +141,6 @@ public class HibernateArticleDao extends AbstractHibernateDao<Article> implement
 	}
 
 	@Override
-	@Transactional
 	public Map<String,String> getByCategory(String category){
 		return getMap(createCriteria()
 		                          .add(Restrictions.eq("category",category))
@@ -162,7 +152,6 @@ public class HibernateArticleDao extends AbstractHibernateDao<Article> implement
 
 
 	@Override
-	@Transactional
 	public Map<String, String> getMostCommented() {
 		  return getMap(createCriteria(Article.class,"article")
 		                            .createAlias("article.comments", "comments")
@@ -174,7 +163,6 @@ public class HibernateArticleDao extends AbstractHibernateDao<Article> implement
 	}
 
 	@Override
-	@Transactional
 	public Map<String, String> getMostViewed() {
 		  return getMap(createCriteria()
 									.setProjection(getCommonProjectionList())
@@ -184,7 +172,6 @@ public class HibernateArticleDao extends AbstractHibernateDao<Article> implement
 	
 
 	@Override
-	@Transactional
 	public void updateHits(final Set<Entry<String, Object[]>> articleHits){
 		Session session = getSession();
 		Query query = session.createQuery("UPDATE articles SET hits=:hits WHERE headline=:headline");
