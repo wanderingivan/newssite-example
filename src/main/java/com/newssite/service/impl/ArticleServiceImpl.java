@@ -62,39 +62,44 @@ public class ArticleServiceImpl implements ArticleService {
 	
 
 	@Override
+	@Transactional
 	@Cacheable(value="article", key="#headline")
 	public Article getArticle(String headline) {
 		return dao.retrieveArticle(headline);
 	}
 
 	@Override
+	@Transactional
 	@Caching(evict={@CacheEvict(value="article_short", allEntries=true),
-					@CacheEvict(value="article", key="#headline")})
+					@CacheEvict(value="article", key="#article.headline")})
 	public void editArticle(Article article,List<String> paragraphs){
 		dao.editArticle(article,paragraphs);
 	}
 	
 	@Override
-	@Caching(evict={@CacheEvict(value="article_short", allEntries=true),
-					@CacheEvict(value="article", key="#headline")})
+	@Transactional
+	@Caching(evict={@CacheEvict(value="article_short", allEntries=true)})
 	public void deleteArticle(long id) {
 		dao.deleteArticle(id);
 		deleteAcl(id);
 	}
 
 	@Override
+	@Transactional
 	@Cacheable(value="article_short", key="#root.methodName")
 	public Map<String, List<Article>> latestCategories() {	
 		return sortCategories(dao.latest());
 	}
 
 	//@Override
+	@Transactional
 	@Cacheable(value="article_short", key="#category")
 	public List<Article> getCategory(String category) {
 		return dao.loadArticlesByCategory(category);
 	}
 
 	@Override
+	@Transactional
 	@Cacheable(value="article_short", key="#headline")
 	public List<Article> findArticles(String headline) {
 		return dao.findArticles(headline);
@@ -102,6 +107,7 @@ public class ArticleServiceImpl implements ArticleService {
 
 
 	@Override
+	@Transactional
 	@Cacheable(value="article_short", key="#category")
 	public Map<String, String> getByCategory(String category) {
 		System.out.println("In service getting category " + category);
@@ -109,11 +115,13 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
+	@Transactional
 	public List<Comment> loadArticleComments(String headline, int min) {
 		return dao.loadArticleComments(headline, min);
 	}
 
 	@Override
+	@Transactional
 	@Cacheable(value="article_short", key="#root.methodName")
 	public Map<String, String> mostCommented() {
 		
@@ -121,12 +129,14 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
+	@Transactional
 	@Cacheable(value="article_short", key="#root.methodName")
 	public Map<String, String> mostViewed() {
 		return dao.getMostViewed();
 	}
 
 	@Override
+	@Transactional
 	public List<Article> latest() {
 		return dao.latest();
 	}
