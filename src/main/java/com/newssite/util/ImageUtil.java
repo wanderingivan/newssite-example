@@ -76,7 +76,7 @@ public class ImageUtil {
 	 * @param contentType the content type of the file 
 	 * @param fileName the file name the file will be saved with
 	 */
-	public void saveImage(File input,String contentType,String fileName) {
+	public String saveImage(File input,String contentType,String fileName) {
 		OutputStream out = null;
 		ImageOutputStream imageOut = null;
 		ImageWriter writer = null;
@@ -85,7 +85,7 @@ public class ImageUtil {
 
 		try{
 			//Do we need conversion
-			if(convertToJpg && contentType != "image/jpg"){
+			if(convertToJpg && contentType != "image/jpeg"){
 				image = convertToJpg(ImageIO.read(input));
 				fileName = fileName.substring(0, fileName.length() -4).concat(".jpg");//FIXME Easily breakable  handle with regex instead !!!
 			}else{
@@ -121,6 +121,7 @@ public class ImageUtil {
 				       			  // so all resources will be freed manually.
 			}catch(IOException ignore){}
 		}
+		return fileName;
 	}	
 
 	/**

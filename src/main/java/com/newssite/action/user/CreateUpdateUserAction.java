@@ -7,16 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.newssite.exception.DuplicateEmailException;
 import com.newssite.exception.DuplicateUsernameException;
+import com.newssite.interceptor.AuthenticatedUserAware;
 import com.newssite.model.User;
 import com.newssite.service.ImageService;
-
 import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.Preparable;
 import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.convention.annotation.InterceptorRef;
 
-public class CreateUpdateUserAction extends AbstractUserAction implements ModelDriven<User>{
+public class CreateUpdateUserAction extends AbstractUserAction implements ModelDriven<User>, AuthenticatedUserAware,Preparable{
 	
 	/**
 	 * 
@@ -30,9 +32,10 @@ public class CreateUpdateUserAction extends AbstractUserAction implements ModelD
 	private File profilePic;
 	
 	private String profilePicContentType,
-				   profilePicFileName;
+				   profilePicFileName,
+				   actingUser;
 	
-	private User user = new User();
+	private User user;
 
 	
 	@Action(value="createUser",results={@Result(name="success", type="redirectAction", params={"actionName","loadUser","username","${username}"}),
@@ -46,8 +49,8 @@ public class CreateUpdateUserAction extends AbstractUserAction implements ModelD
 			}
 			logger.info("Creating user " + user );
 			if(profilePic != null){
-				imageService.saveImage(profilePic,profilePicContentType,profilePicFileName);
-				user.setImagePath(profilePicFileName);
+				String filename= imageService.saveImage(profilePic,profilePicContentType,profilePicFileName);
+				user.setImagePath(filename);
 			}
 			service.createUser(user);
 			return SUCCESS;
@@ -64,19 +67,21 @@ public class CreateUpdateUserAction extends AbstractUserAction implements ModelD
 			
 		}catch(Exception e){
 			logger.error("Error creating user " + user + "\n" + e);
+			e.printStackTrace();
 		}
 		return ERROR;
 	}
 
 	@Action(value="editUser",results={@Result(name="success", type="redirectAction", params={"actionName","loadUser","username","${username}"}),
-								      @Result(name="input", type="tiles", location="editUserInput")})
+								      @Result(name="input", type="tiles", location="editUserInput")},
+						     interceptorRefs={@InterceptorRef(value="authAwareStack")})
 	public String editUser(){
 		
 		try{
-			logger.info(String.format("Editing user "+ user));
+			logger.info(String.format("User %s editing user %s ",actingUser,user));
 			if(profilePic != null){
-				imageService.saveImage(profilePic,profilePicContentType,profilePicFileName);
-				user.setImagePath(profilePicFileName);
+				String fileName = imageService.saveImage(profilePic,profilePicContentType,profilePicFileName);
+				user.setImagePath(fileName);
 			}
 			service.editUser(user);
 			return SUCCESS;
@@ -151,6 +156,16 @@ public class CreateUpdateUserAction extends AbstractUserAction implements ModelD
 		}else{
 			return true;
 		}
+	}
+
+	@Override
+	public void prepare() throws Exception {
+		this.user = new User();
+	}
+
+	@Override
+	public void setUser(String username) {
+		this.actingUser = username;
 	}
 	
 }

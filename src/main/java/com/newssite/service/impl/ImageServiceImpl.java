@@ -76,8 +76,8 @@ public class ImageServiceImpl implements ImageService {
 	}
 
 	@Override
-	public void saveImage(File file, String contentType, String fileName) throws IOException{
-		 imageUtil.saveImage(file, contentType, fileName);
+	public String saveImage(File file, String contentType, String fileName) throws IOException{
+		 return imageUtil.saveImage(file, contentType, fileName);
 	}
 
 	

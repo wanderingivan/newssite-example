@@ -48,8 +48,8 @@ public class CreateUpdateArticleAction extends AbstractArticleAction implements 
 			logger.info(String.format("Creating Article  %s by user %s with paragraphs %s ",article,user,articleParagraphs));
 			
 			if(articlePic != null){
-				imageService.saveImage(articlePic, articlePicContentType, articlePicFileName);
-				article.setImagePath(articlePicFileName);
+				String fileName= imageService.saveImage(articlePic, articlePicContentType, articlePicFileName);
+				article.setImagePath(fileName);
 			}
 			service.createArticle(article,user,articleParagraphs);
 				
@@ -85,8 +85,8 @@ public class CreateUpdateArticleAction extends AbstractArticleAction implements 
 		try{
 			logger.info(String.format("User %s editing article %s", article,user));
 			if(articlePic != null){
-				imageService.saveImage(articlePic, articlePicContentType, articlePicFileName);
-				article.setImagePath(articlePicFileName);
+				String fileName = imageService.saveImage(articlePic, articlePicContentType, articlePicFileName);
+				article.setImagePath(fileName);
 			}
 			service.editArticle(article,articleParagraphs);
 			return SUCCESS;

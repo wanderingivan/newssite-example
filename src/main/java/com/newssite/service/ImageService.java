@@ -32,6 +32,7 @@ public interface ImageService {
 	 * @param contentType
 	 * @param fileName
 	 * @throws IOException
+	 * @return The file name the image is saved as
 	 */
-	void saveImage(File file,String contentType,String fileName) throws IOException;
+	String saveImage(File file,String contentType,String fileName) throws IOException;
 }
