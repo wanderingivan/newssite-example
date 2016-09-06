@@ -107,7 +107,7 @@ public class MessageDaoTests extends AbstractDaoTest {
 	@Test
 	@Transactional
 	public void testAddMessage(){
-		Message result = dao.addMessage("username2", 2, "testMessage");
+		dao.addMessage("username2", 2, "testMessage");
 		SortedSet<Chat> chats = dao.retrieveUserChats("username3");
 		assertNotNull(chats);
 		assertEquals(1,chats.size());

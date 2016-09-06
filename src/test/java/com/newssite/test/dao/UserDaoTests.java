@@ -110,16 +110,19 @@ public class UserDaoTests extends AbstractDaoTest {
 
 	@Test
 	@Transactional
-	public void testUserLocking(){
+	public void testUserLock(){
 		userDao.disableUser(userToLoad);
 		User test = getUser(userToLoad);
-		assertEquals("User was not disabled", false, test.getEnabled());
-		userDao.enableUser(userToLoad);
-		test = getUser(userToLoad);
-		assertEquals("User was not enabled", true, test.getEnabled());
-		
-	
+		assertFalse("User was not disabled", test.getEnabled());
 	}
+
+	@Test
+	@Transactional
+	public void testUserUnlock(){
+		User test = getUser("username3");
+		userDao.enableUser(userToLoad);
+		assertTrue("User was not enabled", test.getEnabled());
+	}	
 	
 	@Test
 	@Transactional
