@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+
+<tiles-definitions>
+
+	<definition name="basePageLayout" template="/WEB-INF/content/jsp/base/basePageLayout.jsp">
+		<put-attribute name="title" type="string" value=""/>
+		<put-attribute name="header" value="/WEB-INF/content/jsp/base/header.jsp"/>
+		<put-attribute name="nav" value="/WEB-INF/content/jsp/base/nav.jsp"/>
+		<put-attribute name="main" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/content/jsp/base/footer.jsp"/>
+	</definition>
+
+	<definition name="baseListLayout" template="/WEB-INF/content/jsp/base/basePageLayout.jsp">
+		<put-attribute name="title" type="string" value=""/>
+		<put-attribute name="header" value="/WEB-INF/content/jsp/base/header.jsp"/>
+		<put-attribute name="nav" value="/WEB-INF/content/jsp/base/nav.jsp"/>
+		<put-attribute name="list" value=""/>		
+		<put-attribute name="footer" value="/WEB-INF/content/jsp/base/footer.jsp"/>
+	</definition>
+
+	<definition name="indexLayout" extends="basePageLayout">
+		<put-attribute name="title" type="string" value="Test Main Page Prototype"/>
+		<put-attribute name="main" value="/WEB-INF/content/jsp/base/main.jsp"/>
+	</definition>
+	
+    <definition name="articlePageLayout" extends="basePageLayout">
+		<put-attribute name="title" type="string" value="Test List Article Page Prototype"/>
+		<put-attribute name="main" value="/WEB-INF/content/jsp/article/main.jsp"/>
+	</definition>
+	
+ 	<definition name="articleCreateLayout" extends="basePageLayout">
+		<put-attribute name="title" type="string" value="Test Create Article Page Prototype"/>
+		<put-attribute name="main" value="/WEB-INF/content/jsp/article/create.jsp"/>
+ 	</definition>	
+	
+	<definition name="articleListLayout" extends="basePageLayout">
+		<put-attribute name="title" type="string" value="Test Article Page Prototype"/>
+		<put-attribute name="main" value="/WEB-INF/content/jsp/article/list.jsp"/>
+	</definition>
+	
+    <definition name="articlePreviewLayout" extends="basePageLayout">
+		<put-attribute name="title" type="string" value="Test Preview Page Prototype"/>
+		<put-attribute name="main" value="/WEB-INF/content/jsp/article/preview.jsp"/>
+	</definition>
+	
+	<definition name="editArticleInput" extends="basePageLayout">
+		<put-attribute name="main" value="/WEB-INF/content/jsp/article/edit.jsp"/>
+	</definition>
+
+	<definition name="userPageLayout" extends="basePageLayout">
+		<put-attribute name="title" type="string" value="Test User Page Prototype"/>
+		<put-attribute name="main" value="/WEB-INF/content/jsp/user/main.jsp"/>
+	</definition>
+	
+	<definition name="userCreateLayout" extends="basePageLayout">
+		<put-attribute name="title" type="string" value="Test Create User Page Prototype"/>
+		<put-attribute name="main" value="/WEB-INF/content/jsp/user/create.jsp"/>
+	</definition>
+	
+	<definition name="userListLayout" extends="basePageLayout">
+		<put-attribute name="title" type="string" value="Test List User Page Prototype"/>
+		<put-attribute name="main" value="/WEB-INF/content/jsp/user/list.jsp"/>
+	</definition>
+	
+	<definition name="userMessagesLayout" extends="basePageLayout">
+		<put-attribute name="title" type="string" value="Test User Messages Page Prototype"/>
+		<put-attribute name="main" value="/WEB-INF/content/jsp/user/messageList.jsp"/>
+	</definition>
+	
+	<definition name="editUserInput" extends="basePageLayout">
+		<put-attribute name="main" value="/WEB-INF/content/jsp/user/edit.jsp"/>
+	</definition>
+
+	<definition name="changePasswordLayout" extends="basePageLayout">
+		<put-attribute name="title" value="Password Change"/>
+		<put-attribute name="main" value="/WEB-INF/content/jsp/user/passwordForm.jsp"/>
+	</definition>
+
+	<definition name="loginPageLayout" extends="basePageLayout">
+		<put-attribute name="main" value="/WEB-INF/content/jsp/base/login.jsp"/>
+	</definition>	
+	
+	<definition name="error404" extends="basePageLayout">
+		<put-attribute name="title" type="string" value="404 Page"/>
+		<put-attribute name="main" value="/WEB-INF/content/jsp/error/404.jsp"/>
+	</definition>
+	
+</tiles-definitions>
