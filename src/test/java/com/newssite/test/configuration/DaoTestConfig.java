@@ -5,28 +5,18 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
-import org.dbunit.DataSourceDatabaseTester;
-import org.dbunit.IDatabaseTester;
 import org.hibernate.SessionFactory;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.support.ResourceTransactionManager;
 
 import com.newssite.service.ImageService;
-import com.newssite.util.ImageUtil;
 
 
 @Configuration

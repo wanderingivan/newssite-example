@@ -1,5 +1,7 @@
 package com.newssite.dao.impl;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -43,7 +45,7 @@ public class HibernateArticleDao extends AbstractHibernateDao<Article> implement
 		super(sessionFactory,Article.class);
 	}
 	
-
+    
 	@Override
 	public long createArticle(Article article, String author,List<String> paragraphs){
 		Session session = getSession();
@@ -85,6 +87,7 @@ public class HibernateArticleDao extends AbstractHibernateDao<Article> implement
 		article.setHeadline(update.getHeadline());
 		article.setCaption(update.getCaption());
 		article.setCategory(update.getCategory());
+		article.setLastEdited(new Timestamp(System.currentTimeMillis()));
 		if(update.getImagePath() != null){
 			article.setImagePath(update.getImagePath());
 		}
