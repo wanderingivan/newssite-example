@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<constant name="struts.devMode" value="false"/>
+	<constant name="struts.dynamicMethodInvocation" value="false"/>
+	<constant name="struts.ognl.enableExpressionCache" value="true"/>
+	<constant name="struts.custom.i18n.resources" value="global"/>
+	<constant name="struts.mapper.action.prefix.enabled" value="true"/>	
+	
+	<!-- Adapter so we could include spring security csrf tokens in multipart POSTs -->
+    <constant name="struts.multipart.parser" value="spring"/>
+    <bean type="org.apache.struts2.dispatcher.multipart.MultiPartRequest" name="spring"  
+    		class="com.newssite.util.SpringMultipartParser" scope="default"/>	
+    		
+
+	<package name="default" extends="tiles-default" namespace="/">
+	    <interceptors>
+			<interceptor name="authAwareInterceptor" class="com.newssite.interceptor.AuthInterceptor"/>
+			<interceptor-stack name="authAwareStack">
+			  <interceptor-ref name="authAwareInterceptor"/>
+			  <interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+		</interceptors>
+		<global-results>
+			<result name="error" type="tiles">error403</result>
+		</global-results>
+		<global-exception-mappings>
+		    <exception-mapping result="error" exception="java.lang.Exception"/>
+		</global-exception-mappings>
+	</package>
+	
+	
+	<package name="index" extends="default" namespace="/index"/>    
+	
+	<package name="article" extends="default" namespace="/article">
+	
+		<action name="createArticlePage">
+			<result name="success" type="tiles">articleCreateLayout</result>
+		</action>
+	
+	</package>
+	
+	<package name="user" extends="default" namespace="/user">
+	
+		<action name="createUserPage">
+			<result name="success" type="tiles">userCreateLayout</result>
+		</action>
+		<action name="loginPage">
+			<result name="success" type="tiles">loginPageLayout</result>
+		</action>		
+		
+	</package>
+
+    <package name="message" extends="default,json-default" namespace="/message">
+
+	</package>
+    
+    <package name="admin" extends="default,json-default" namespace="/admin">
+
+    </package>
+    
+	<package name="util" extends="struts-default" namespace="/util">
+	
+		<result-types>
+        	<result-type name="imageBytesResult" class="com.newssite.action.result.ImageBytesResult"/>
+    	</result-types>
+    	
+    </package>
+    
+</struts>

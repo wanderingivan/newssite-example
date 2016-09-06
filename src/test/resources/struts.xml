@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<constant name="struts.devMode" value="true"/>
+	<constant name="struts.dynamicMethodInvocation" value="false"/>
+	<constant name="struts.ognl.enableExpressionCache" value="false"/>
+	<constant name="struts.custom.i18n.resources" value="global"/>
+	<constant name="struts.mapper.action.prefix.enabled" value="true"/>	
+	
+
+	<package name="default" extends="tiles-default" namespace="/">
+		<!--<global-results>
+			<result name="error" type="tiles">error403</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="error" exception="java.lang.Exception"/>
+		</global-exception-mappings>-->
+	    <interceptors>
+			<interceptor name="authAwareInterceptor" class="com.newssite.interceptor.AuthInterceptor"/>
+			<interceptor-stack name="authAwareStack">
+			  <interceptor-ref name="authAwareInterceptor"/>
+			  <interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+		</interceptors>
+	</package>
+	
+	
+	<package name="index" extends="tiles-default" namespace="/index"/>    
+	
+	<package name="article" extends="default" namespace="/article">
+		<action name="createArticlePage">
+			<result name="success" type="tiles">articleCreateLayout</result>
+		</action>
+	
+	</package>
+	
+	<package name="user" extends="default" namespace="/user">
+		
+		<action name="createUserPage">
+			<result name="success" type="tiles">userCreateLayout</result>
+		</action>
+		<action name="loginPage">
+			<result name="success" type="tiles">loginPageLayout</result>
+		</action>		
+		
+	</package>
+
+    <package name="message" extends="json-default ,default" namespace="/message">
+        <result-types>
+	        <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+	    </result-types>
+	</package>
+    
+    <package name="admin" extends="default,json-default" namespace="/admin">
+
+    </package>
+    
+	<package name="util" extends="struts-default" namespace="/util">
+	
+		<result-types>
+        	<result-type name="imageBytesResult" class="com.newssite.action.result.ImageBytesResult"/>
+    	</result-types>
+    	
+    </package>
+    
+</struts>
