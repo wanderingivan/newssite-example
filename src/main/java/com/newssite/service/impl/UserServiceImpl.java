@@ -40,6 +40,7 @@ public class UserServiceImpl implements UserService {
 	private MutableAclService aclService;
 	private String defaultProfileImagePath;
 	private PasswordEncoder encoder;
+	
 	@Autowired
 	public UserServiceImpl(UserDao dao,MutableAclService aclService,String defaultImagePath,PasswordEncoder encoder) {
 		super();
@@ -56,6 +57,8 @@ public class UserServiceImpl implements UserService {
 		if(user.getImagePath() == null){
 			user.setImagePath(defaultProfileImagePath);
 		}
+		System.out.println("Encoder is null " + (encoder == null));
+		user.setPassword(encoder.encode(user.getPassword()));
 		long id = dao.createUser(user);
 		createAcl(id,new PrincipalSid(user.getUsername()));
 	}
@@ -133,8 +136,8 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public void changePassword(String user, String oldPassword,
 			String newPassword) {
-		/*oldPassword = encoder.encode(oldPassword); FIXME Enable encoder !!!
-		newPassword = encoder.encode(newPassword);*/ 
+		oldPassword = encoder.encode(oldPassword);
+		newPassword = encoder.encode(newPassword); 
 		dao.changePassword(user,oldPassword,newPassword);
 	}
 	

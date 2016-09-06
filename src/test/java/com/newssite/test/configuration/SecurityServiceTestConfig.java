@@ -16,8 +16,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.security.acls.model.MutableAclService;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.support.ResourceTransactionManager;
 
@@ -35,6 +38,7 @@ import com.newssite.service.impl.ArticleServiceImpl;
 @EnableTransactionManagement
 public class SecurityServiceTestConfig {
 
+	
 	
 	@Bean
 	@Autowired
@@ -73,6 +77,14 @@ public class SecurityServiceTestConfig {
 	
 	@Bean
 	@Autowired
+	public DaoAuthenticationProvider authProvider(DataSource dataSource){
+		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+		provider.setUserDetailsService(userDetailsService(dataSource));
+		provider.setPasswordEncoder(passwordEncoder());
+		return provider;
+	}
+	
+	@Bean
 	public UserDetailsService userDetailsService (DataSource dataSource){
 		JdbcDaoImpl dao =  new JdbcDaoImpl();
 		dao.setDataSource(dataSource);
@@ -81,6 +93,12 @@ public class SecurityServiceTestConfig {
 		dao.afterPropertiesSet();
 		return dao;
 	}
+	
+	@Bean 
+	public PasswordEncoder passwordEncoder(){
+		return new BCryptPasswordEncoder(12);
+	}
+	
 	
 	@Bean(name="txManager")
 	@Autowired

@@ -77,7 +77,7 @@ public class NewsSiteConfig {
 	@Autowired
 	@Bean(name="userServiceImpl")
 	public UserService userService(UserDao userDao,MutableAclService aclService,PasswordEncoder encoder){
-		return new UserServiceImpl(userDao,aclService,defaultProfileImagePath,null);//FIXME Add Password Encoder !!!
+		return new UserServiceImpl(userDao,aclService,defaultProfileImagePath,encoder);
 	}
 
 	@Autowired

@@ -6,7 +6,6 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.Cache;
 import org.springframework.context.annotation.Bean;
@@ -29,12 +28,12 @@ import org.springframework.security.acls.jdbc.LookupStrategy;
 import org.springframework.security.acls.model.AclCache;
 import org.springframework.security.acls.model.AclService;
 import org.springframework.security.acls.model.PermissionGrantingStrategy;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
 
 @Configuration
@@ -42,10 +41,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 public class MethodSecurityConfig extends GlobalMethodSecurityConfiguration{
 	
 	@Autowired
-	public void configure(AuthenticationManagerBuilder auth,UserDetailsService userDetailsService) throws Exception {
-	  auth.userDetailsService(userDetailsService);
-	  auth.jdbcAuthentication();
-	  //auth.jdbcAuthentication().passwordEncoder(passwordEncoder());FIXME set up later
+	public void configure(AuthenticationManagerBuilder auth,DaoAuthenticationProvider provider) throws Exception {
+		auth.authenticationProvider(provider);
 	}
 
 	@Bean

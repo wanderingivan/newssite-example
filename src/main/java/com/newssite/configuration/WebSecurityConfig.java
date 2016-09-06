@@ -3,16 +3,15 @@ package com.newssite.configuration;
 import java.util.HashMap;
 import java.util.Map;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.access.AccessDeniedHandlerImpl;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -29,10 +28,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
 
 	
 	@Autowired
-	public void configure(AuthenticationManagerBuilder auth,UserDetailsService userDetailsService) throws Exception {
-	  auth.userDetailsService(userDetailsService);
-	  auth.jdbcAuthentication();
-	  //auth.jdbcAuthentication().passwordEncoder(passwordEncoder()); FIXME ADD Encoder !!!
+	public void configure(AuthenticationManagerBuilder auth,DaoAuthenticationProvider provider) throws Exception {
+		auth.authenticationProvider(provider);
 	}
 	
 

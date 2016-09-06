@@ -25,7 +25,7 @@ public interface UserService {
 	 * @param user the user to persist
 	 * @return the persisted user's id
 	 */	
-	@PreAuthorize("isAnonymous())")
+	@PreAuthorize("isAnonymous()")
 	public void createUser(User user);
 
 	/**
@@ -87,7 +87,7 @@ public interface UserService {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void changeAuthority(String username, String authority);
 
-	@PreAuthorize("isAuthenticated())")
+	@PreAuthorize("isAuthenticated()")
 	public void changePassword(String user, String oldPassword,
 			String newPassword);
 
