@@ -34,11 +34,11 @@ public class LoadImageAction implements ServletRequestAware{
 	}
 	
 	public String getImageContentType(){
-		return "image/jpg";
+		return "image/jpeg";
 	}
 	
 	public String getImageContentDisposition() {
-		return "anyname.jpg";
+		return "anyname.jpeg";
 	}
 
 

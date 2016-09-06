@@ -2,6 +2,7 @@ package com.newssite.action.message;
 
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import com.newssite.model.Chat;
 import com.newssite.service.MessageService;
 import com.opensymphony.xwork2.ActionSupport;
 
+@ParentPackage("message")
 public class LoadChatAction extends ActionSupport implements AuthenticatedUserAware{
 
 	/**

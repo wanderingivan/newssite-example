@@ -5,8 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.newssite.service.UserService;
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
-import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
 
 @ParentPackage(value="user")
 public abstract class AbstractUserAction extends ActionSupport {

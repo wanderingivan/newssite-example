@@ -1,7 +1,6 @@
 package com.newssite.action;
 
 import com.newssite.model.Article;
-import com.newssite.model.User;
 import com.newssite.service.ArticleService;
 import com.newssite.service.UserService;
 import com.opensymphony.xwork2.ActionSupport;
