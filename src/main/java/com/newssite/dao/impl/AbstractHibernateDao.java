@@ -1,9 +1,12 @@
 package com.newssite.dao.impl;
 
+
+
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 
 /**
  * Abstract class that provides convenience methods for 
@@ -49,5 +52,16 @@ public abstract class AbstractHibernateDao<T> {
 	@SuppressWarnings("unchecked")
 	protected T load(Integer id){
 		return (T) getSession().load(type, id);
+	}
+	
+	@SuppressWarnings("unchecked")
+	protected T getWithCriteria(Object [] restrictions){
+		Criteria crit = createCriteria();
+		for(int i =0;i< restrictions.length;i += 2){
+			crit.add(Restrictions.eq((String) restrictions[i],restrictions[i+1]));
+		}
+		crit.setMaxResults(1);
+		return (T) crit.uniqueResult();
+		
 	}
 }
