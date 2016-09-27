@@ -3,7 +3,7 @@
 <dataset>
 	<users user_id="1" username="username1" email="some@email" password="Bar" enabled="1" imagePath="/home/shadow1207/Examples/Bootstrap/NewsSite/img/350x350ProfilePic.png" details="Placeholder Description"/>
 	<users user_id="2" username="username2" email="some@email1" password="Bar" enabled="1" imagePath="/home/shadow1207/Examples/Bootstrap/NewsSite/img/350x350ProfilePic.png" details="Placeholder Description"/>
-	<users user_id="3" username="username3" email="some@email2" password="Bar" enabled="1" imagePath="/home/shadow1207/Examples/Bootstrap/NewsSite/img/350x350ProfilePic.png" details="Placeholder Description"/>
+	<users user_id="3" username="username3" email="some@email2" password="Bar" enabled="0" imagePath="/home/shadow1207/Examples/Bootstrap/NewsSite/img/350x350ProfilePic.png" details="Placeholder Description"/>
 	<users user_id="4" username="username4" email="some@email3" password="Bar" enabled="1" imagePath="/home/shadow1207/Examples/Bootstrap/NewsSite/img/350x350ProfilePic.png" details="Placeholder Description"/>
 	<users username="username5" email="some@email4"  password="Bar" enabled="1" imagePath="/home/shadow1207/Examples/Bootstrap/NewsSite/img/350x350ProfilePic.png" details="Placeholder Description"/>
 
