@@ -17,9 +17,9 @@ import com.newssite.model.Task;
  * basic operations for messages,comments
  * and admin tasks
  * Defines method security checks.
- * @see com.newssite.model.Message
- * @see com.newssite.model.Task
- * @see com.newssite.model.Comment
+ * @see Message
+ * @see Task
+ * @see Comment
  */
 public interface MessageService {
 	

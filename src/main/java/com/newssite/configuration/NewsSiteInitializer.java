@@ -15,7 +15,6 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.multipart.support.MultipartFilter;
 
-import com.newssite.util.ShutdownListener;
 import com.newssite.util.TilesResolver;
 
 /**
@@ -32,14 +31,18 @@ public class NewsSiteInitializer implements WebApplicationInitializer {
 		
 		AnnotationConfigWebApplicationContext appContext = setUpAppContext();
         servletContext.addListener(new ContextLoaderListener(appContext));
-        servletContext.addListener(new ShutdownListener());
+        appContext.refresh();
+
+        
+          //TilesAccess a class used in TilesListener doesn't have permission to append the tiles container
+          //to the servlet context if initialized this way so we have to do it manually- this is fixed in 2.3.28 onward
+         
         try{
         	servletContext.setAttribute("org.apache.tiles.CONTAINER",new TilesResolver().createContainer(servletContext));
         }catch(TilesException te){
         	System.out.println("Exception Creating Tiles Container" + te);
         	throw new RuntimeException(te);
         }
-        appContext.refresh();
         FilterRegistration.Dynamic filter = servletContext.addFilter("multipartResolver", new MultipartFilter());
         filter.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST), false, "/*");
        

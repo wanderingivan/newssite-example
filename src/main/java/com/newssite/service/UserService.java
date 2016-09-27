@@ -12,7 +12,7 @@ import com.newssite.model.User;
 /**
  * Service layer interface
  * Provides methods for CRUD actions on Users 
- * and administrtive methods for locking and
+ * and administrative methods for locking and
  * changing a users authority role.
  * Defines method security checks
  */

@@ -20,7 +20,7 @@ import com.newssite.model.Task;
  * Implementation of UserService
  * that provides transaction support
  * and delegates CRUD options to a dao.
- * @see com.pollapp.dao.MessageDao
+ * @see MessageDao
  *
  */
 @Service
