@@ -35,6 +35,7 @@ public class IndexAction extends AbstractArticleAction {
 	@Action(value="latest")
 	public String execute(){
 		try{
+			System.out.println("Running latest");
 			populateArticles(new String[]{"latest",
 					 					  "politics",
 					 					  "international",

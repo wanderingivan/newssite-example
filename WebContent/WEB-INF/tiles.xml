@@ -88,5 +88,10 @@
 		<put-attribute name="title" type="string" value="404 Page"/>
 		<put-attribute name="main" value="/WEB-INF/content/jsp/error/404.jsp"/>
 	</definition>
+
+	<definition name="error403" extends="basePageLayout">
+		<put-attribute name="title" type="string" value="403 Page"/>
+		<put-attribute name="main" value="/WEB-INF/content/jsp/error/403.jsp"/>
+	</definition>
 	
 </tiles-definitions>

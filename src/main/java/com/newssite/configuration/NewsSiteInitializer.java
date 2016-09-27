@@ -31,7 +31,6 @@ public class NewsSiteInitializer implements WebApplicationInitializer {
 		
 		AnnotationConfigWebApplicationContext appContext = setUpAppContext();
         servletContext.addListener(new ContextLoaderListener(appContext));
-        appContext.refresh();
 
         
           //TilesAccess a class used in TilesListener doesn't have permission to append the tiles container
@@ -43,6 +42,8 @@ public class NewsSiteInitializer implements WebApplicationInitializer {
         	System.out.println("Exception Creating Tiles Container" + te);
         	throw new RuntimeException(te);
         }
+
+        appContext.refresh();
         FilterRegistration.Dynamic filter = servletContext.addFilter("multipartResolver", new MultipartFilter());
         filter.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST), false, "/*");
        
