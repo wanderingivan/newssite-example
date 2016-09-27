@@ -25,7 +25,7 @@ import com.newssite.model.Article;
  */
 @Component
 @Scope("singleton")
-public class HitResolver /*implements DisposableBean*/{
+public class HitResolver {
 	
 	
 	private Map<String,Object[]> productHits;
@@ -55,7 +55,6 @@ public class HitResolver /*implements DisposableBean*/{
 	
 	@PreDestroy
 	public void cleanUp(){
-		System.out.println("Shutting down hit resolver");
 		shutdownAndAwaitTermination();
 	}
 	
