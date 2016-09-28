@@ -470,9 +470,11 @@ img {
 }
 
 .article_title {
+	font-family:Oswald;
     font-size: 40px !important;
     padding: 5px;
     text-transform : uppercase;
+    
 }
 
 .article_title::before {
@@ -592,6 +594,7 @@ img {
 	padding-right : 5px;
 }
 .carousel-headline {
+	font-family:Oswald;
 	font-size: 22px;
     font-weight: bold;
     text-transform: uppercase;
@@ -843,6 +846,7 @@ ul {
     background-color: #798992;
 }
 .title_text {
+	font-family:Oswald;
 	color : #798992;
 	background-color: #F5F5F5;
 }
@@ -861,6 +865,10 @@ ul {
 .close {
 	color : #ffa500;
 	opacity : 0.6;
+}
+.post_title{
+	font-family:Oswald;
+	text-transform:capitalize;
 }
 .post_title:hover {
 	color : #ffa500;
@@ -964,6 +972,7 @@ a:hover {
 		bottom :2px;
 	}
 	.title_text {
+		font-family:Oswald;
 		font-size : 11px;
 		top : 6px;
 		padding : 0px 1px;

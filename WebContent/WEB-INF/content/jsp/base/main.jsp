@@ -83,7 +83,7 @@
       			        <div class="largecatimg_container">
       			         <s:a href="%{articleUrl}"><img alt="!missing" src="<s:property value='#loadImage'/>"/></s:a>
       			        </div>
-      			        <s:a href="%{articleUrl}"><h2><s:property value="headline"/></h2></s:a>
+      			        <s:a href="%{articleUrl}"><h2 class="post_title"><s:property value="headline"/></h2></s:a>
       			        <p class="cat-p"><s:property value="caption"/></p>		  	  	  
 		  	  	      </div>
 		  	        </s:if>
@@ -94,7 +94,7 @@
       			   	        <img alt="!missing" src="<s:property value='#loadImage'/>"/> 
       			          </s:a>
       			          <div class="media-body">
-      			            <s:a href="%{articleUrl}"><h4 class="media-heading"><s:property value="headline"/></h4></s:a>
+      			            <s:a href="%{articleUrl}"><h4 class="post_title"><s:property value="headline"/></h4></s:a>
 	  					    <p class="cat-p hidden-xs"><s:property value="caption.substring(0,100)"/>...</p>
       			          </div>
       			        </div>
@@ -149,7 +149,7 @@
 				      <img alt="img" src="<s:property value='#loadImage'/>"/>
 				    </s:a>
 					<div class="media-body">
-      			      <s:a href="%{articleUrl}"><h4 class="media-heading"><s:property value="headline"/></h4></s:a>
+      			      <s:a href="%{articleUrl}"><h4 class="post_title"><s:property value="headline"/></h4></s:a>
 	  			      <p class="cat-p hidden-xs"><s:property value="caption.substring(0,100)"/>...</p>
 	  			    </div>
 				  </div>      			  
@@ -195,7 +195,7 @@
 				      <img alt="img" src="<s:property value='#loadImage'/>"/>
 				    </s:a>
 					<div class="media-body">
-      			      <s:a href="%{articleUrl}"><h4 class="media-heading"><s:property value="headline"/></h4></s:a>
+      			      <s:a href="%{articleUrl}"><h4 class="post_title"><s:property value="headline"/></h4></s:a>
 	  			      <p class="cat-p hidden-xs"><s:property value="caption.substring(0,100)"/>...</p>
 	  			    </div>
 				  </div>      			  
@@ -236,7 +236,7 @@
       			        <div class="largecatimg_container">
       			         <s:a href="%{articleUrl}"><img alt="!missing" src="<s:property value='#loadImage'/>"/></s:a>
       			        </div>
-      			        <s:a href="%{articleUrl}"><h2><s:property value="headline"/></h2></s:a>
+      			        <s:a href="%{articleUrl}"><h2 class="post_title"><s:property value="headline"/></h2></s:a>
       			        <p class="cat-p"><s:property value="caption"/></p>		  	  	  
 		  	  	      </div>
 		  	        </s:if>
@@ -247,7 +247,7 @@
       			   	        <img alt="!missing" src="<s:property value='#loadImage'/>"/> 
       			          </s:a>
       			          <div class="media-body">
-      			            <s:a href="%{articleUrl}"><h4 class="media-heading"><s:property value="headline"/></h4></s:a>
+      			            <s:a href="%{articleUrl}"><h4 class="post_title"><s:property value="headline"/></h4></s:a>
  	  					    <p class="cat-p hidden-xs"><s:property value="caption.substring(0,100)"/>...</p>
       			          </div>
       			        </div>
