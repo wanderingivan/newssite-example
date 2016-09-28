@@ -2,14 +2,12 @@ package com.newssite.test.configuration;
 
 import javax.sql.DataSource;
 
-import net.sf.ehcache.Ehcache;
 
 import org.hibernate.SessionFactory;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
-import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
 import org.springframework.cache.support.NoOpCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,8 +24,6 @@ import org.springframework.transaction.support.ResourceTransactionManager;
 
 import com.newssite.dao.ArticleDao;
 import com.newssite.dao.UserDao;
-import com.newssite.dao.impl.HibernateArticleDao;
-import com.newssite.dao.impl.HibernateUserDao;
 import com.newssite.service.ArticleService;
 import com.newssite.service.UserService;
 import com.newssite.service.impl.UserServiceImpl;

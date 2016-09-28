@@ -111,17 +111,7 @@ public class ArticleDaoTests extends AbstractDaoTest {
 		}
 	}
 
-	@Test
-	@Transactional
-	public void testGetMostViewed(){
-		Map<String,String> articles =  articleDao.getMostViewed();
-	}
-	
-	@Test
-	@Transactional
-	public void testGetMostCommented(){
-		Map<String,String> articles =  articleDao.getMostCommented();
-	}
+
 
 	private Article getArticle(String headline){
 		Article test = articleDao.retrieveArticle(headline);

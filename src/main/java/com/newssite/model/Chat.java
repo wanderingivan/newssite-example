@@ -81,7 +81,7 @@ public class Chat implements Comparable<Chat>{
 
 	@Override
 	public int compareTo(Chat other) {
-		return this.id.compareTo(other.getId()); //FIXME This doesn't give the ordering that's expected !!!
+		return this.id.compareTo(other.getId());
 	}
 
 	public void addMessage(Message message) {
