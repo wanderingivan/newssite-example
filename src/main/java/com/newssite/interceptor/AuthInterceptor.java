@@ -26,9 +26,13 @@ public class AuthInterceptor extends AbstractInterceptor {
 	}
 
 	private String getUserFromSecurityContext(){
-		
-		return SecurityContextHolder.getContext()
-									.getAuthentication()
-									.getName();
+		try{
+			return SecurityContextHolder.getContext()
+										.getAuthentication()
+										.getName();
+		}catch(Exception ex){
+			logger.error("Caught exception " + ex + " when loading user info from ctx");
+			return null;
+		}
 	}
 }
