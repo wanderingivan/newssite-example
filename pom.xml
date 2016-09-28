@@ -6,7 +6,6 @@
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
   <name>newssite Maven Webapp</name>
-  <url>http://maven.apache.org</url>
   
   <properties>
   
@@ -291,6 +290,7 @@
   		<version>2.1</version>
   		<configuration>
     	  <path>/NewsSite</path>
+    	  <warSourceDirectory>${basedir}/WebContent/</warSourceDirectory>        	  
   		</configuration>
 	  </plugin>
       
