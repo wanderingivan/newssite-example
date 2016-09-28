@@ -8,20 +8,38 @@ import org.springframework.web.context.WebApplicationContext;
 import com.newssite.test.configuration.BasicTestConfig;
 import com.opensymphony.xwork2.ActionProxy;
 
+
+/**
+ * Abstract class that handles interceptor configuration 
+ * and proxy creation before tests are ran 
+ */
+@SuppressWarnings("rawtypes")
 public abstract class AbstractActionValidationTestCase extends StrutsTestCase {
 	
-	@SuppressWarnings("rawtypes")
 	private final Class DEFAULT_CONFIG_CLASS = BasicTestConfig.class;
 
+	private Class configClass;
+	
 	private GenericApplicationContext applicationContext;
 	
 	protected void setupBeforeInitDispatcher() throws Exception{
 		if(applicationContext == null){
-			applicationContext = new AnnotationConfigApplicationContext(DEFAULT_CONFIG_CLASS);
+			if(configClass == null){
+				applicationContext = new AnnotationConfigApplicationContext(DEFAULT_CONFIG_CLASS);
+			}else{
+				applicationContext = new AnnotationConfigApplicationContext(configClass);
+			}
 		}
         servletContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, applicationContext);
 	}
     
+
+    /**
+     * Return an ActionProxy of the supplied action configured not to execute the result and with preset parameters 
+     * @param action the action to proxy
+     * @param params parameters to set on the action
+     * @return ActionProxy
+     */
     protected final ActionProxy getProxy(String action,String [] params){
     	setUpRequestTestParams(params);
 		ActionProxy actionProxy = getActionProxy(action);
@@ -30,5 +48,17 @@ public abstract class AbstractActionValidationTestCase extends StrutsTestCase {
 		return actionProxy;	    	
     }
     
+    /**
+     * @param param the parameters the action will be initialized with
+     */
     protected abstract void setUpRequestTestParams(String [] param);
+
+    
+    /**
+     * Convenience method to switch test configs
+     * @param configClass different class to initialize appContext with
+     */
+	public void setConfigClass(Class configClass) {
+		this.configClass = configClass;
+	}
 }
