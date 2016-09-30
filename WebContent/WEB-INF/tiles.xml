@@ -50,7 +50,12 @@
 	<definition name="editArticleInput" extends="basePageLayout">
 		<put-attribute name="main" value="/WEB-INF/content/jsp/article/edit.jsp"/>
 	</definition>
-
+	
+	<definition name="articleCommentInputLayout" extends="basePageLayout">
+		<put-attribute name="title" type="string" value="Test Input Comment Page Prototype"/>
+		<put-attribute name="main" value="/WEB-INF/content/jsp/article/commentinput.jsp"/>
+	</definition>
+	
 	<definition name="userPageLayout" extends="basePageLayout">
 		<put-attribute name="title" type="string" value="Test User Page Prototype"/>
 		<put-attribute name="main" value="/WEB-INF/content/jsp/user/main.jsp"/>

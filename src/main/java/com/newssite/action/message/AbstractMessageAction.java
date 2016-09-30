@@ -34,10 +34,10 @@ public class AbstractMessageAction extends ActionSupport {
 		return message;
 	}
 	
-	@RequiredStringValidator(message="message cannot be empty")
+	@RequiredStringValidator(key="global.field_required",fieldName="message")
 	@StringLengthFieldValidator(minLength = "1",
 	        					maxLength = "250",
-	        					message="field must between ${minLength} and ${maxLength} characters")
+	        					key="global.field_between",fieldName="message")
 	public void setMessage(String message) {
 		this.message = message;
 	}

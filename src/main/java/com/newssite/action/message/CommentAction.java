@@ -20,7 +20,8 @@ public class CommentAction extends AbstractMessageAction implements Authenticate
 	private String username,headline;
 	private long articleId,commentId;
 	
-	@Action(value="addComment",results={@Result(name="success",type="redirectAction",params={"namespace","/article","actionName","loadArticle","headline","${headline}"})})
+	@Action(value="addComment",results={@Result(name="success",type="redirectAction",params={"namespace","/article","actionName","loadArticle","headline","${headline}"}),
+									    @Result(name="input",type="tiles", location="articleCommentInputLayout")})
 	public String post(){
 		try{
 			if(logger.isDebugEnabled()){
@@ -36,7 +37,8 @@ public class CommentAction extends AbstractMessageAction implements Authenticate
 		return ERROR;		
 	}
 	
-	@Action(value="editComment",results={@Result(name="success",type="redirectAction",params={"namespace","/article","actionName","loadArticle","headline","${headline}"})})
+	@Action(value="editComment",results={@Result(name="success",type="redirectAction",params={"namespace","/article","actionName","loadArticle","headline","${headline}"}),
+    									 @Result(name="input",type="tiles", location="articleCommentInputLayout")})
 	public String edit(){
 		try{
 			if(logger.isDebugEnabled()){
