@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.newssite.dao.UserDao;
 import com.newssite.exception.DuplicateUsernameException;
 import com.newssite.exception.DuplicateEmailException;
-import com.newssite.exception.IncorrectPasswordException;
 import com.newssite.model.User;
 
 public class UserDaoTests extends AbstractDaoTest {
@@ -139,15 +138,15 @@ public class UserDaoTests extends AbstractDaoTest {
 	@Test
 	@Transactional
 	public void testChangePassword(){
-		userDao.changePassword( "username1", "Bar", "new password");
+		userDao.changePassword( "username1", "new password");
 		User test = userDao.retrieveUser("username1");
 		assertEquals("new password", test.getPassword());
 	}
 	
-	@Test(expected=IncorrectPasswordException.class)
+	@Test
 	@Transactional
-	public void testChangePasswordException(){
-		userDao.changePassword( "username1", "password", "new password");
+	public void testGetPassword(){
+		 assertEquals("Bar",userDao.getPassword( "username1"));
 	}
 	
 	private User getUser(String username) {

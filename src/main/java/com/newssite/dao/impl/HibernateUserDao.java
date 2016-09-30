@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.newssite.dao.UserDao;
-import com.newssite.exception.IncorrectPasswordException;
 import com.newssite.exception.extractor.ConstraintExceptionConverter;
 import com.newssite.model.Article;
 import com.newssite.model.Comment;
@@ -159,16 +158,20 @@ public class HibernateUserDao extends AbstractHibernateDao<User> implements User
 	}
 	
 	@Override
-	public void changePassword(String principal, String oldPassword,
+	public void changePassword(String principal,
 			String newPassword) {
-		if(!(checkPassword(principal, oldPassword))){
-			throw new IncorrectPasswordException();
-		}
 		logger.info("Changing password for user " + principal);
 	    createQuery("UPDATE users SET password = :password WHERE username=:username")
 		            .setString("password", newPassword)
 		            .setString("username", principal)
 		            .executeUpdate();
+	}
+	
+	@Override
+	public String getPassword(String principal){
+		 return (String) createQuery("SELECT password FROM users u WHERE username = :username")
+				      		         .setString("username", principal)
+				      		         .uniqueResult();
 	}
 	
 	/**
@@ -208,19 +211,6 @@ public class HibernateUserDao extends AbstractHibernateDao<User> implements User
 			throw new IllegalArgumentException("Received an unmapped role as argument "+authority);
 		}
 		return gId;
-	}
-
-
-	
-	private boolean checkPassword(String username,String password){
-		long id = (long) createQuery("SELECT count(*) FROM users u WHERE username = :username AND password = :password")
-				                     .setString("password", password)
-				      		         .setString("username", username)
-				      		         .uniqueResult();
-		if (id == 1){
-			return true; 
-		}
-		return false;
 	}
 	
 }

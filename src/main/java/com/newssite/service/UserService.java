@@ -87,6 +87,13 @@ public interface UserService {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void changeAuthority(String username, String authority);
 
+	 /**
+	  * Changes a user's password
+	  * @param principal
+	  * @param oldPassword
+	  * @param newPassword
+	  * @throws IncorrectPasswordException if the old password doesn't match
+	  */
 	@PreAuthorize("isAuthenticated()")
 	public void changePassword(String user, String oldPassword,
 			String newPassword);

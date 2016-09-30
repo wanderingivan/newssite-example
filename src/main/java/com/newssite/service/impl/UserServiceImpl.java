@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.newssite.dao.UserDao;
+import com.newssite.exception.IncorrectPasswordException;
 import com.newssite.model.Article;
 import com.newssite.model.Comment;
 import com.newssite.model.User;
@@ -124,6 +125,17 @@ public class UserServiceImpl implements UserService {
 		dao.changeAuthority(username,authority);
 	}
 
+	@Override
+	@Transactional
+	public void changePassword(String user, String oldPassword,
+			String newPassword) {
+		if(!(checkPassword(user, oldPassword))){
+			throw new IncorrectPasswordException();
+		}
+		newPassword = encoder.encode(newPassword); 
+		dao.changePassword(user,newPassword);
+	}
+	
 	/**
 	 * Adds an acl that grants write permissions for User id to Sid
 	 * @param id - id of the User object 
@@ -135,14 +147,8 @@ public class UserServiceImpl implements UserService {
 		acl.insertAce(acl.getEntries().size(), BasePermission.WRITE, sid, true);
 		aclService.updateAcl(acl);
 	}
-
-	@Override
-	@Transactional
-	public void changePassword(String user, String oldPassword,
-			String newPassword) {
-		oldPassword = encoder.encode(oldPassword);
-		newPassword = encoder.encode(newPassword); 
-		dao.changePassword(user,oldPassword,newPassword);
-	}
 	
+	private boolean checkPassword(String principal, String password){
+		return encoder.matches(password, dao.getPassword(principal));
+	}
 }

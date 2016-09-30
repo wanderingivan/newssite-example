@@ -72,6 +72,9 @@ public interface UserDao {
 
 	 void changeAuthority(String username, String authority);
 
-	 void changePassword(String principal, String oldPassword, String newPassword);
+
+	 void changePassword(String principal,String newPassword);
+
+	 String getPassword(String principal);
 
 }
