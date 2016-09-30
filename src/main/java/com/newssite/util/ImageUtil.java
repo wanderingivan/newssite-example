@@ -87,7 +87,8 @@ public class ImageUtil {
 			//Do we need conversion
 			if(convertToJpg && contentType != "image/jpeg"){
 				image = convertToJpg(ImageIO.read(input));
-				fileName = fileName.substring(0, fileName.length() -4).concat(".jpg");//FIXME Easily breakable  handle with regex instead !!!
+				fileName = fileName.substring(0, fileName.lastIndexOf('.'))
+						           .concat(".jpg");
 			}else{
 				image = ImageIO.read(input);
 			}
@@ -119,7 +120,7 @@ public class ImageUtil {
 				imageOut.close(); // discern whether it actually frees resources e.g in the abstract ImageWriter class dispose() is just 
 				out.close();      // an empty method. Some subclasses have their own implementations of dispose() and some don't
 				       			  // so all resources will be freed manually.
-			}catch(IOException ignore){}
+			}catch(Exception ignore){}
 		}
 		return fileName;
 	}	
