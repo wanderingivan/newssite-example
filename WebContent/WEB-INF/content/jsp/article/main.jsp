@@ -106,6 +106,7 @@
 				  <s:form action="addComment" namespace="/message" theme="simple">
 				    <s:hidden name="%{#attr._csrf.parameterName}" value="%{#attr._csrf.token}"/>
 				    <s:hidden name="articleId" value="%{article.id}"/>
+				    <s:hidden name="headline" value="%{article.headline}"/>
 				    <div class="form-group">
 					  <s:textarea id="message" cssClass="comment_textarea form-control" placeholder="%{getText('global.your_comment')}" name="message" rows="5" cols="50"/>
 	      		      <s:submit key="global.add_comment"/>				

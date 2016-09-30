@@ -17,7 +17,7 @@ public class CommentAction extends AbstractMessageAction implements Authenticate
 	private static final long serialVersionUID = 558238082038582045L;
 	private static final Logger logger = Logger.getLogger(CommentAction.class);
 	
-	private String username;
+	private String username,headline;
 	private long articleId,commentId;
 	
 	@Action(value="addComment",results={@Result(name="success",type="redirectAction",params={"namespace","/article","actionName","loadArticle","headline","${headline}"})})
@@ -36,7 +36,7 @@ public class CommentAction extends AbstractMessageAction implements Authenticate
 		return ERROR;		
 	}
 	
-	@Action(value="editComment",results={@Result(name="success",type="redirectAction",params={"namespace","/article","actionName","loadArticle","articleId","${articleId}"})})
+	@Action(value="editComment",results={@Result(name="success",type="redirectAction",params={"namespace","/article","actionName","loadArticle","headline","${headline}"})})
 	public String edit(){
 		try{
 			if(logger.isDebugEnabled()){
@@ -52,7 +52,7 @@ public class CommentAction extends AbstractMessageAction implements Authenticate
 		return ERROR;
 	}
 	
-	@Action(value="delete",results={@Result(name="success",type="redirectAction",params={"namespace","/article","actionName","loadArticle","articleId","${articleId}"})})
+	@Action(value="delete",results={@Result(name="success",type="redirectAction",params={"namespace","/article","actionName","loadArticle","headline","${headline}"})})
 	public String delete(){
 		try{
 			if(logger.isDebugEnabled()){
@@ -83,6 +83,14 @@ public class CommentAction extends AbstractMessageAction implements Authenticate
 
 	public void setCommentId(long commentId) {
 		this.commentId = commentId;
+	}
+	
+	public String getHeadline() {
+		return headline;
+	}
+
+	public void setHeadline(String headline) {
+		this.headline = headline;
 	}
 
 	@Override
