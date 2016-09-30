@@ -46,7 +46,6 @@ public class HibernateUserDao extends AbstractHibernateDao<User> implements User
 			                               	   .setLong("group_id", resolveGroup("user"));
 			query.executeUpdate();
 		}catch(ConstraintViolationException ce){			
-			System.out.println("Caught exception " + ce);
 			RuntimeException ex = ConstraintExceptionConverter.convertException(ce);
 			throw ex;
 		}
@@ -78,7 +77,6 @@ public class HibernateUserDao extends AbstractHibernateDao<User> implements User
 		            .setLong("id",edit.getId())
 		            .executeUpdate();
 		}catch(ConstraintViolationException ce){			
-			System.out.println("Caught exception " + ce);
 			RuntimeException ex = ConstraintExceptionConverter.convertException(ce);
 			throw ex;
 		}
@@ -166,6 +164,7 @@ public class HibernateUserDao extends AbstractHibernateDao<User> implements User
 		if(!(checkPassword(principal, oldPassword))){
 			throw new IncorrectPasswordException();
 		}
+		logger.info("Changing password for user " + principal);
 	    createQuery("UPDATE users SET password = :password WHERE username=:username")
 		            .setString("password", newPassword)
 		            .setString("username", principal)

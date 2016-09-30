@@ -57,7 +57,6 @@ public class UserServiceImpl implements UserService {
 		if(user.getImagePath() == null){
 			user.setImagePath(defaultProfileImagePath);
 		}
-		System.out.println("Encoder is null " + (encoder == null));
 		user.setPassword(encoder.encode(user.getPassword()));
 		long id = dao.createUser(user);
 		createAcl(id,new PrincipalSid(user.getUsername()));
@@ -125,6 +124,11 @@ public class UserServiceImpl implements UserService {
 		dao.changeAuthority(username,authority);
 	}
 
+	/**
+	 * Adds an acl that grants write permissions for User id to Sid
+	 * @param id - id of the User object 
+	 * @param sid Owning security id
+	 */
 	private void createAcl(long id,Sid sid) {
 		MutableAcl acl = aclService.createAcl(new ObjectIdentityImpl(User.class, id));
 		acl.setOwner(sid);
