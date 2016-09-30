@@ -22,7 +22,7 @@ public class DeleteArticleAction extends AbstractArticleAction  implements Authe
 	
 	private long id;
 	
-	@Action(value="delete", results={@Result(name="success",type="redirectAction",params={"namespace","/admin","actionName","welcomeAction"})})
+	@Action(value="delete", results={@Result(name="success",type="redirectAction",params={"namespace","/admin","actionName","welcome"})})
 	public String execute(){
 		try{
 			logger.info(String.format(" User %s Deleting Article with id %d",username,id));
