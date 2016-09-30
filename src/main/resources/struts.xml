@@ -25,7 +25,7 @@
 			</interceptor-stack>
 		</interceptors>
 		<global-results>
-			<result name="error" type="tiles">error403</result>
+			<result name="error" type="tiles">error404</result>
 		</global-results>
 		<global-exception-mappings>
 		    <exception-mapping result="error" exception="java.lang.Exception"/>
