@@ -82,15 +82,20 @@ public class HibernateArticleDao extends AbstractHibernateDao<Article> implement
 	
 	@Override
 	public void editArticle(Article update,List<String> paragraphs){
-		Article article = load(update.getId());
-		article.setHeadline(update.getHeadline());
-		article.setCaption(update.getCaption());
-		article.setCategory(update.getCategory());
-		article.setLastEdited(new Timestamp(System.currentTimeMillis()));
-		if(update.getImagePath() != null){
-			article.setImagePath(update.getImagePath());
+		try{
+			Article article = load(update.getId());
+			article.setHeadline(update.getHeadline());
+			article.setCaption(update.getCaption());
+			article.setCategory(update.getCategory());
+			article.setLastEdited(new Timestamp(System.currentTimeMillis()));
+			if(update.getImagePath() != null){
+				article.setImagePath(update.getImagePath());
+			}
+			updateParagraphs(article, paragraphs);
+		}catch(ConstraintViolationException ce){
+			RuntimeException ex = ConstraintExceptionConverter.convertException(ce);
+			throw ex;
 		}
-		updateParagraphs(article, paragraphs);
 	}
 
 	@Override

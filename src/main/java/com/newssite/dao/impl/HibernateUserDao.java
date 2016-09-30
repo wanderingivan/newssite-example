@@ -38,14 +38,15 @@ public class HibernateUserDao extends AbstractHibernateDao<User> implements User
 	@Override
 	public long createUser(User user) {	
 		try{
-		Session session = getSession();
-		user.setEnabled(true);
-		session.persist(user);
-		SQLQuery query  =(SQLQuery) session.createSQLQuery("INSERT into group_members(username,group_id) VALUES(:username,:group_id)")
-			                               .setString("username", user.getUsername())
-			                               .setLong("group_id", resolveGroup("user"));
-	    query.executeUpdate();
+			Session session = getSession();
+			user.setEnabled(true);
+			session.persist(user);
+			SQLQuery query  =(SQLQuery) session.createSQLQuery("INSERT into group_members(username,group_id) VALUES(:username,:group_id)")
+			                               	   .setString("username", user.getUsername())
+			                               	   .setLong("group_id", resolveGroup("user"));
+			query.executeUpdate();
 		}catch(ConstraintViolationException ce){			
+			System.out.println("Caught exception " + ce);
 			RuntimeException ex = ConstraintExceptionConverter.convertException(ce);
 			throw ex;
 		}
@@ -68,13 +69,19 @@ public class HibernateUserDao extends AbstractHibernateDao<User> implements User
 
 	@Override
 	public void editUser(User edit) {
-		createQuery("UPDATE users SET username = :username, email = :email, details = :details, imagePath = :imagePath WHERE id = :id")
-		            .setString("username", edit.getUsername())
+		try{
+			createQuery("UPDATE users SET username = :username, email = :email, details = :details, imagePath = :imagePath WHERE id = :id")
+					.setString("username", edit.getUsername())
 		            .setString("email",edit.getEmail())
 		            .setString("details",edit.getDetails())
 		            .setString("imagePath",edit.getImagePath())
 		            .setLong("id",edit.getId())
 		            .executeUpdate();
+		}catch(ConstraintViolationException ce){			
+			System.out.println("Caught exception " + ce);
+			RuntimeException ex = ConstraintExceptionConverter.convertException(ce);
+			throw ex;
+		}
 	}
 	
 	
