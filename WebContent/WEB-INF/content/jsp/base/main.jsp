@@ -95,7 +95,14 @@
       			          </s:a>
       			          <div class="media-body">
       			            <s:a href="%{articleUrl}"><h4 class="post_title"><s:property value="headline"/></h4></s:a>
-	  					    <p class="cat-p hidden-xs"><s:property value="caption.substring(0,100)"/>...</p>
+	  			      		<p class="cat-p hidden-xs">
+	  			        	  <s:if test="caption.length > 75">
+	  			          		<s:property value="caption.substring(0,75)"/>...
+	  			        	  </s:if>
+	  			        	  <s:else>
+	  			        	    <s:property value="caption"/>
+	  			              </s:else>
+	  			            </p>
       			          </div>
       			        </div>
       			      </div>
@@ -150,7 +157,14 @@
 				    </s:a>
 					<div class="media-body">
       			      <s:a href="%{articleUrl}"><h4 class="post_title"><s:property value="headline"/></h4></s:a>
-	  			      <p class="cat-p hidden-xs"><s:property value="caption.substring(0,100)"/>...</p>
+	  			      <p class="cat-p hidden-xs">
+	  			        <s:if test="caption.length > 75">
+	  			          <s:property value="caption.substring(0,75)"/>...
+	  			        </s:if>
+	  			        <s:else>
+	  			        	<s:property value="caption"/>
+	  			        </s:else>
+	  			      </p>
 	  			    </div>
 				  </div>      			  
       			  </s:else>	  	  	  
@@ -196,7 +210,14 @@
 				    </s:a>
 					<div class="media-body">
       			      <s:a href="%{articleUrl}"><h4 class="post_title"><s:property value="headline"/></h4></s:a>
-	  			      <p class="cat-p hidden-xs"><s:property value="caption.substring(0,100)"/>...</p>
+	  			      <p class="cat-p hidden-xs">
+	  			        <s:if test="caption.length > 75">
+	  			          <s:property value="caption.substring(0,75)"/>...
+	  			        </s:if>
+	  			        <s:else>
+	  			        	<s:property value="caption"/>
+	  			        </s:else>
+	  			      </p>
 	  			    </div>
 				  </div>      			  
       			  </s:else>	  	  	  
@@ -248,7 +269,14 @@
       			          </s:a>
       			          <div class="media-body">
       			            <s:a href="%{articleUrl}"><h4 class="post_title"><s:property value="headline"/></h4></s:a>
- 	  					    <p class="cat-p hidden-xs"><s:property value="caption.substring(0,100)"/>...</p>
+	  			      		<p class="cat-p hidden-xs">
+	  			        	  <s:if test="caption.length > 75">
+	  			          		<s:property value="caption.substring(0,75)"/>...
+	  			        	  </s:if>
+	  			        	  <s:else>
+	  			        		<s:property value="caption"/>
+	  			        	  </s:else>
+	  			      		</p>
       			          </div>
       			        </div>
       			      </div>
