@@ -35,8 +35,6 @@ public class ChangePasswordAction extends AbstractUserAction implements
 	public String changePassword(){
 		try{
 			logger.info("Changing password for user " + user);
-			System.out.println(user);
-			System.out.println(oldPassword+ " " + newPassword);
 			service.changePassword(user,oldPassword,newPassword);
 			http.logout();
 			return SUCCESS;
