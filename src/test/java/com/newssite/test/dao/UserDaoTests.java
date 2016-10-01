@@ -139,8 +139,7 @@ public class UserDaoTests extends AbstractDaoTest {
 	@Transactional
 	public void testChangePassword(){
 		userDao.changePassword( "username1", "new password");
-		User test = userDao.retrieveUser("username1");
-		assertEquals("new password", test.getPassword());
+		assertEquals("new password", userDao.getPassword("username1"));
 	}
 	
 	@Test

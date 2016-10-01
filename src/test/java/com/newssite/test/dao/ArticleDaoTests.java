@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.newssite.dao.ArticleDao;
+import com.newssite.exception.DuplicateHeadlineException;
 import com.newssite.model.Article;
 import com.newssite.model.User;
 
@@ -111,7 +112,12 @@ public class ArticleDaoTests extends AbstractDaoTest {
 		}
 	}
 
-
+	@Test(expected=DuplicateHeadlineException.class)
+	@Transactional
+	public void testDuplicateHeadlineException(){
+		Article test = new Article("headline2","caption","politics",null);
+		articleDao.createArticle(test, "username1", Arrays.asList(new String[]{"paragraph"}));
+	}
 
 	private Article getArticle(String headline){
 		Article test = articleDao.retrieveArticle(headline);
