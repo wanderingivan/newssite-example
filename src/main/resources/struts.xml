@@ -30,6 +30,9 @@
 		<global-exception-mappings>
 		    <exception-mapping result="error" exception="java.lang.Exception"/>
 		</global-exception-mappings>
+		<action name="photoCredits">
+			<result name="success" type="tiles">creditsLayout</result>
+		</action>
 	</package>
 	
 	

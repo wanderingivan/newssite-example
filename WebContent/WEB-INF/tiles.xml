@@ -99,4 +99,8 @@
 		<put-attribute name="main" value="/WEB-INF/content/jsp/error/403.jsp"/>
 	</definition>
 	
+	<definition name="creditsLayout" extends="basePageLayout">
+		<put-attribute name="main" value="/WEB-INF/content/jsp/base/credits.jsp"/>
+	</definition>
+	
 </tiles-definitions>
