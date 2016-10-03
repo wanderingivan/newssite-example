@@ -562,6 +562,11 @@ img {
 		width: 2px;
 		bottom: 30px;
 }
+
+.credits .media .media-body a:first-child {
+	font-family:Garamond;
+	font-size:18px;
+}
 .search-input {
 	width:85%
 }
@@ -605,7 +610,13 @@ img {
 	padding: 0px 16px;
 }
 .footer {
-	height : 150px;
+	padding:25px 0px 10px 0px;
+	color:#FDFFFE;
+}
+.footer a:hover{
+	text-decoration: none;
+	color:#FDFFFE;
+	cursor:pointer;
 }
 .form-wrapper {
 	padding: 30px;
