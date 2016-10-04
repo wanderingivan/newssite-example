@@ -7,24 +7,24 @@
 	<users user_id="4" username="username4" email="some@email3" password="Bar" enabled="1" imagePath="ProfilePic.png" details="Placeholder Description"/>
 	<users username="username5" email="some@email4"  password="Bar" enabled="1" imagePath="ProfilePic.png" details="Placeholder Description"/>
 
-	<articles article_id="3" headline="headline1" caption="sometext" category="politics" imagePath="News.png" author_id="2" lastEdited="2015-09-08" hits="1"/>
-	<articles article_id="4" headline="headline2" caption="sometext" category="politics" imagePath="News.png" author_id="2" lastEdited="2015-09-01" hits="100"/>
-	<articles headline="headline23" caption="sometext" category="sports" imagePath="News.png" author_id="2" lastEdited="2015-09-05" hits="120"/>
-	<articles headline="headline234" caption="sometext" category="sports" imagePath="News.png" author_id="2" lastEdited="2015-09-05" hits="120"/>
-	<articles headline="headline3" caption="sometext" category="entertainment" imagePath="News.png" author_id="2" lastEdited="2015-09-04" hits="0"/>
-	<articles headline="headline6" caption="sometext" category="entertainment" imagePath="News.png" author_id="2" lastEdited="2015-09-04" hits="0"/>
-	<articles article_id="5" headline="headline4" caption="sometext" category="international" imagePath="350News.png" author_id="3" lastEdited="2015-09-02" hits="0"/>
-	<articles article_id="7" headline="headline7" caption="sometext" category="international" imagePath="350x350News.png" author_id="3" lastEdited="2015-09-02" hits="0"/>
+	<articles article_id="3" headline="headline1" caption="sometext" category="politics" imagePath="News.png" author_id="2" lastEdited="2016-09-08" hits="1"/>
+	<articles article_id="4" headline="headline2" caption="sometext" category="politics" imagePath="News.png" author_id="2" lastEdited="2016-09-01" hits="100"/>
+	<articles headline="headline23" caption="sometext" category="sports" imagePath="News.png" author_id="2" lastEdited="2016-09-05" hits="120"/>
+	<articles headline="headline234" caption="sometext" category="sports" imagePath="News.png" author_id="2" lastEdited="2016-09-05" hits="120"/>
+	<articles headline="headline3" caption="sometext" category="entertainment" imagePath="News.png" author_id="2" lastEdited="2016-09-04" hits="0"/>
+	<articles headline="headline6" caption="sometext" category="entertainment" imagePath="News.png" author_id="2" lastEdited="2016-09-04" hits="0"/>
+	<articles article_id="5" headline="headline4" caption="sometext" category="international" imagePath="350News.png" author_id="3" lastEdited="2016-09-02" hits="0"/>
+	<articles article_id="7" headline="headline7" caption="sometext" category="international" imagePath="350x350News.png" author_id="3" lastEdited="2016-09-02" hits="0"/>
 	
 	<paragraphs article_id="3" text="paragraph text" article_order="0"/>
 	<paragraphs article_id="4" article_order="0" text="paragraph text"/>
 	<paragraphs article_id="4" article_order="1" text="paragraph text"/>
 	<paragraphs article_id="4" article_order="2" text="paragraph text"/>
 	
-	<comments article_id="3" message="message" poster_id="1" posted="2015-09-08"/>
-	<comments article_id="3" message="message" poster_id="1" posted="2015-09-04" comment_id="2"/>
-	<comments article_id="3" comment_id="1000" message="messageToEdit" poster_id="3" posted="2015-09-03"/>
-	<comments article_id="4" comment_id="3" message="messageToDelete" poster_id="1" posted="2015-09-02"/>
+	<comments article_id="3" message="message" poster_id="1" posted="2016-09-08"/>
+	<comments article_id="3" message="message" poster_id="1" posted="2016-09-04" comment_id="2"/>
+	<comments article_id="3" comment_id="1000" message="messageToEdit" poster_id="3" posted="2016-09-03"/>
+	<comments article_id="4" comment_id="3" message="messageToDelete" poster_id="1" posted="2016-09-02"/>
 
 	
 	<groups group_name="users" id="1"/>
@@ -41,11 +41,11 @@
 	<group_members group_id="1" username="username1"/>
 	<group_members group_id="1" username="username4"/>
 	
-	<chats chat_id="1" lastUpdate="2015-09-03"/>
-	<chats chat_id="2" lastUpdate="2015-09-03"/>
-	<messages message_id="3" message="message" chat_id="1" poster_id="1" posted="2015-09-02 00:00:01"/>
-	<messages message="message3" chat_id="1" poster_id="2" posted="2015-09-03 00:00:02"/>
-	<messages message="message2" chat_id="2" poster_id="2" posted="2015-09-04"/>
+	<chats chat_id="1" lastUpdate="2016-09-03"/>
+	<chats chat_id="2" lastUpdate="2016-09-03"/>
+	<messages message_id="3" message="message" chat_id="1" poster_id="1" posted="2016-09-02 00:00:01"/>
+	<messages message="message3" chat_id="1" poster_id="2" posted="2016-09-03 00:00:02"/>
+	<messages message="message2" chat_id="2" poster_id="2" posted="2016-09-04"/>
 	<chats_join_table user_id="1" chat_id="1"/>
 	<chats_join_table user_id="2" chat_id="1"/>
 	<chats_join_table user_id="3" chat_id="2"/>
