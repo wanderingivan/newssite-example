@@ -110,7 +110,6 @@ public class ArticleServiceImpl implements ArticleService {
 	@Transactional
 	@Cacheable(value="article_short", key="#category")
 	public Map<String, String> getByCategory(String category) {
-		System.out.println("In service getting category " + category);
 		return dao.getByCategory(category);
 	}
 

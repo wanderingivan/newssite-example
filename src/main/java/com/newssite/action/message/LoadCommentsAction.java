@@ -54,7 +54,6 @@ public class LoadCommentsAction extends ActionSupport {
 			}
 			return SUCCESS;
 		}catch(Exception e){
-			System.out.println("Error comments " +e);
 			logger.error(String.format("Exception caught loading comments ordered by %s %s",getOrdering(),e));
 		}
 		return ERROR;

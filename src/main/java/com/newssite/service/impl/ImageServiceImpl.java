@@ -30,7 +30,6 @@ public class ImageServiceImpl implements ImageService {
 		super();
 		this.imageUtil = imageUtil;
 		this.placeholderFilename = placeholderFilename;
-		System.out.println("Placeholder " + placeholderFilename);
 	}
 	
 	/**

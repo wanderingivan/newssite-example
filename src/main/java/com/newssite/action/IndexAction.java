@@ -35,7 +35,6 @@ public class IndexAction extends AbstractArticleAction {
 	@Action(value="latest")
 	public String execute(){
 		try{
-			System.out.println("Running latest");
 			populateArticles(new String[]{"latest",
 					 					  "politics",
 					 					  "international",
@@ -44,7 +43,6 @@ public class IndexAction extends AbstractArticleAction {
 			setCarouselCategory("latest");
 			return SUCCESS;
 		}catch(Exception e){
-			System.out.println(e.getCause() + "\n" + e.getMessage());
 			e.printStackTrace();
 			logger.error("Error loading articles in indexAction "+ e);
 		}
