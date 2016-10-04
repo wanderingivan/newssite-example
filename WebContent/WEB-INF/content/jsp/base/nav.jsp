@@ -85,6 +85,9 @@
           
           <div class="modal-body">
 
+ 	        <div class="alert alert-info">
+	  	     Premade accounts are username1 - user account  and username2 - writer account with password <i>password</i>
+	        </div>
          	<div class="form-wrapper">
          		<form action="/NewsSite/login" method="POST" name="login" class="form-inline">
          		  <div class="form-group">
@@ -131,7 +134,7 @@
           </div>
           
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal"><s:text name="global.close"/></button>          
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>          
           </div>
           
         </div>
