@@ -12,13 +12,16 @@
 		    </ul>
 		  </div>
 		  <div class="col-md-4">
-		    
-		    <s:a  action="photoCredits" namespace="/">Photo Credit</s:a><br/>
-		    <a href="http://wpfreeware.com/preview/magexpress/">Original Theme : MagExpress</a>
-            <br/>
+		    <ul>
+		      <li><s:a  action="photoCredits" namespace="/">Photo Credit</s:a></li>
+		      <li><a href="http://wpfreeware.com/preview/magexpress/">Original Theme : MagExpress</a></li>
+		    </ul>
 		  </div>
-		  <div class="col-md-offset-2 col-md-3">
-		    <p>&copy; Copyright: No one at all. Go nuts.</p>
+		  <div class=" col-md-3">
+		    <ul>
+		      <li><a href="http://github.com/wanderingivan/">About Me</a>
+		      <li><p>&copy; Copyright: No one at all. Go nuts.</p></li>
+		    </ul>
 		  </div>      
       	</div>
 	  </div>
