@@ -1,5 +1,7 @@
 package com.newssite.configuration;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -93,7 +95,14 @@ public class NewsSiteConfig {
 	}
 	
 	@Bean
-	public ImageUtil imageUtil(){
+	public ImageUtil imageUtil() throws IOException{
+	    if(imageFolder.isEmpty()){// Revert to folder in src
+	        imageFolder = System.getProperty("user.dir").concat("/src/images");
+	        if(!new File(imageFolder).exists()){
+	            throw new IOException("Misconfiguration: Cannot access imagefolder - images won't load ");
+	        }
+
+	    }
 		ImageUtil util = new ImageUtil(imageFolder,convertToJpg,maxUncompressedSize);
 		return util;
 	}
