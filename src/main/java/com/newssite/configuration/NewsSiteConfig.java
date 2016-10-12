@@ -35,7 +35,9 @@ import com.newssite.util.ImageUtil;
 @Import({DataSourceConfig.class,HibernateConfig.class,CacheConfig.class,TransactionConfig.class,SecurityConfig.class})
 public class NewsSiteConfig {
 
-	
+
+    private static final String DEFAULT_IMAGE_FOLDER = "/src/images";
+    
 	@Value("${image.folder}")
 	private String imageFolder;
 	
@@ -97,7 +99,7 @@ public class NewsSiteConfig {
 	@Bean
 	public ImageUtil imageUtil() throws IOException{
 	    if(imageFolder.isEmpty()){// Revert to folder in src
-	        imageFolder = System.getProperty("user.dir").concat("/src/images");
+	        imageFolder = System.getProperty("user.dir").concat(DEFAULT_IMAGE_FOLDER);
 	        if(!new File(imageFolder).exists()){
 	            throw new IOException("Misconfiguration: Cannot access imagefolder - images won't load ");
 	        }
