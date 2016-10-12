@@ -21,9 +21,9 @@ public class DBUnitTestConfig {
 	public DataSource testDataSource(){
 		DriverManagerDataSource data = new DriverManagerDataSource();
 		data.setDriverClassName("com.mysql.jdbc.Driver");
-		data.setUrl("jdbc:mysql://localhost:3306/NEWSSITETEST");
-		data.setUsername("tester");
-		data.setPassword("pass");
+		data.setUrl("jdbc:mysql://localhost:3306/NEWSSITETEST?useSSL=false");
+		data.setUsername("root");
+		data.setPassword("password");
 		return data;
 	}
 
