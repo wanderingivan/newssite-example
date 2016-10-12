@@ -66,7 +66,6 @@ public class CommentAction extends AbstractMessageAction implements Authenticate
 		}catch(Exception e){
 			logger.error(String.format("Exception  caught posting comment message: %d article: %s  from :%s \n %s"
 																			,message,articleId,username,e));
-			logger.error(e);		
 		}
 		return ERROR;
 	}

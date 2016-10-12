@@ -36,7 +36,6 @@ public class LoadCommentsAction extends ActionSupport {
 			if(logger.isDebugEnabled()){
 				logger.debug("Retrieved Comments  for Article " + articleId + "\n " + comments);
 			}
-			logger.trace("Returned Comments " + comments);
 			return SUCCESS;
 		}catch(Exception e){
 			logger.error(String.format("Exception caught loading comments for article %d %s ",articleId,e));
