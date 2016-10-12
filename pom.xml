@@ -263,7 +263,6 @@
   </dependencies>
   
   <build>
-  
       <plugins>
       
       <plugin>
@@ -293,11 +292,145 @@
     	  <warSourceDirectory>${basedir}/WebContent/</warSourceDirectory>        	  
   		</configuration>
 	  </plugin>
-      
+	  
+	  <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>sql-maven-plugin</artifactId>
+        <version>1.5</version>
+
+        <dependencies>
+  	      <dependency>
+  			<groupId>mysql</groupId>
+  			<artifactId>mysql-connector-java</artifactId>
+  		    <version>5.1.39</version>
+  	      </dependency>
+        </dependencies>
+
+        <configuration>
+          <driver>com.mysql.jdbc.Driver</driver>
+          <url>jdbc:mysql://localhost:3306?useSSL=false</url>
+          <username>root</username>
+          <password>password</password>
+        </configuration>
+
+        <executions>
+          <execution>
+            <id>drop-db-before-test-if-any</id>
+            <phase>process-test-resources</phase>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <configuration>
+              <url>jdbc:mysql://localhost:3306?useSSL=false</url>
+              <autocommit>true</autocommit>
+              <sqlCommand>drop database if exists NEWSSITETEST</sqlCommand>              
+              <sqlCommand>create database NEWSSITETEST</sqlCommand>
+              <skip>${test.build.database.skip}</skip>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>create-test-schema</id>
+            <phase>process-test-resources</phase>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <configuration>
+              <url>jdbc:mysql://localhost:3306/NEWSSITETEST?useSSL=false</url>
+              <autocommit>true</autocommit>
+              <srcFiles>
+                <srcFile>src/scripts/sql/createDatabase.sql</srcFile>
+              </srcFiles>
+              <skip>${test.build.database.skip}</skip>
+            </configuration>
+          </execution>
+          
+          <execution>
+            <id>create-test-procedures</id>
+            <phase>process-test-resources</phase>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <configuration>
+              <url>jdbc:mysql://localhost:3306/NEWSSITETEST?useSSL=false</url>
+              <delimiter>//</delimiter>
+              <autocommit>true</autocommit>
+              <srcFiles>
+                <srcFile>src/scripts/sql/createProcedures.sql</srcFile>
+              </srcFiles>
+              <skip>${test.build.database.skip}</skip>
+            </configuration>
+          </execution>
+ 
+          <execution>
+            <id>create-db</id>
+            <phase>process-classes</phase>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <configuration>
+              <url>jdbc:mysql://localhost:3306?useSSL=false</url>
+              <autocommit>true</autocommit>
+              <sqlCommand>create database if not exists NEWSSITEDATA</sqlCommand>
+              <skip>${build.database.skip}</skip>
+            </configuration>
+         </execution>
+
+         <execution>
+            <id>create-schema</id>
+            <phase>process-classes</phase>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <configuration>
+              <url>jdbc:mysql://localhost:3306/NEWSSITEDATA?useSSL=false</url>
+              <autocommit>true</autocommit>
+              <srcFiles>
+                <srcFile>src/scripts/sql/createDatabase.sql</srcFile>
+              </srcFiles>
+              <skip>${build.database.skip}</skip>
+            </configuration>
+         </execution>
+          
+         <execution>
+            <id>create-procedures</id>
+            <phase>process-classes</phase>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <configuration>
+              <url>jdbc:mysql://localhost:3306/NEWSSITEDATA?useSSL=false</url>
+              <delimiter>//</delimiter>
+              <autocommit>true</autocommit>
+              <srcFiles>
+                <srcFile>src/scripts/sql/createProcedures.sql</srcFile>
+              </srcFiles>
+              <skip>${build.database.skip}</skip>
+            </configuration>
+         </execution>
+          
+         <execution>
+            <id>create-add-preset-data</id>
+            <phase>process-classes</phase>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <configuration>
+              <url>jdbc:mysql://localhost:3306/NEWSSITEDATA?useSSL=false</url>
+              <autocommit>true</autocommit>
+              <srcFiles>
+                <srcFile>src/scripts/sql/createPresetDb.sql</srcFile>
+              </srcFiles>
+              <skip>${build.preset.skip}</skip>
+            </configuration>
+         </execution>
+          
+        </executions>
+      </plugin>
+		  
     </plugins>
-  
     <finalName>NewsSite</finalName>
     
   </build>
-  
+
 </project>
