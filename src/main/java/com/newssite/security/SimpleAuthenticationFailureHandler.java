@@ -14,17 +14,22 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationFa
 
 public class SimpleAuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler{
 	
-	Logger logger = Logger.getLogger(getClass());
-
+	Logger logger = Logger.getLogger(SimpleAuthenticationFailureHandler.class);
+	private final String defaultUrl;
+	
+	public SimpleAuthenticationFailureHandler(String url){
+	    this.defaultUrl = url;
+	}
+	
 	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request,
 				HttpServletResponse response, AuthenticationException exception) 
 							throws ServletException,IOException{
-		logger.error("Failed Authenticating user");
-		logger.error("Request was: "+request);
-		logger.error("Exception was: "+exception);
-		redirectStrategy.sendRedirect(request, response, "/login.jsp");
+		logger.info("Failed Authenticating user");
+		logger.info("Request was: "+request);
+		logger.info("Exception was: "+exception);
+		redirectStrategy.sendRedirect(request, response, defaultUrl);
 	}
 
 }

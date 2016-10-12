@@ -76,7 +76,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
 	}
 	@Bean
 	public AuthenticationFailureHandler authFailureHandler(){
-		return new SimpleUrlAuthenticationFailureHandler(defaultFailureUrl());
+		return new SimpleAuthenticationFailureHandler(defaultFailureUrl());
 	}
 	
 	@Bean
