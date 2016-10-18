@@ -2,6 +2,7 @@ package com.newssite.service.impl;
 
 
 
+
 import java.io.File;
 import java.io.IOException;
 
@@ -55,14 +56,22 @@ public class ImageServiceImpl implements ImageService {
 		}
 	}
 
+
+	
+
+	@Override
+	public String saveImage(File file, String contentType, String fileName) throws IOException{
+		 return imageUtil.saveImage(file, contentType, fileName);
+	}
+
 	/**
-	 * Uses image util to return an image loaded in a byte[].<br/>
+	 * Uses image util to return an image <br/>
 	 * Tries to resolve missing files by returning a placeholder
 	 * image
 	 */
-	@Override
+    @Override
 	@Cacheable(value="image", key="#path")
-	public byte[] loadImage(String path){
+    public File loadImage(String path) throws IOException{
 		try{
 			return imageUtil.loadImage(path);
 		}catch(IOException missingFile){
@@ -73,11 +82,6 @@ public class ImageServiceImpl implements ImageService {
 				throw new IllegalArgumentException("Can't open placeholder file ");
 			}
 		}
-	}
-
-	@Override
-	public String saveImage(File file, String contentType, String fileName) throws IOException{
-		 return imageUtil.saveImage(file, contentType, fileName);
-	}
+    }
 	
 }

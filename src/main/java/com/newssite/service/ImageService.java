@@ -22,9 +22,8 @@ public interface ImageService {
 	 */
 	String getB64(String path);
 	
-	byte [] loadImage(String path); 
 	
-	
+    File loadImage(String path) throws IOException;
 	
 	/**
 	 * Saves an image to a predefined destination
@@ -35,4 +34,6 @@ public interface ImageService {
 	 * @return The file name the image is saved as
 	 */
 	String saveImage(File file,String contentType,String fileName) throws IOException;
+
+    
 }

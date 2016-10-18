@@ -1,6 +1,9 @@
 package com.newssite.action.util;
 
 
+import java.io.File;
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.convention.annotation.Action;
@@ -27,11 +30,10 @@ public class LoadImageAction implements ServletRequestAware{
 	public String execute(){
 		return "ImageResult";
 	}
-
-	public byte[] getImageInBytes() {
-		return service.loadImage(path);
-	}
 	
+	public File getImage() throws IOException{
+	    return service.loadImage(path);
+	}
 	public String getImageContentType(){
 		return "image/jpeg";
 	}
@@ -39,7 +41,6 @@ public class LoadImageAction implements ServletRequestAware{
 	public String getImageContentDisposition() {
 		return "anyname.jpeg";
 	}
-
 
 	@Override
 	public void setServletRequest(HttpServletRequest arg0) {
