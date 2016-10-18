@@ -102,7 +102,7 @@ public class ArticleDaoTests extends AbstractDaoTest {
 
 	@Test
 	@Transactional
-	public void testFindByCategory(){
+	public void testGetByCategory(){
 		String[] categories = new String []{"politics","international","sports","entertainment"};
 		Map<String,String> articles = null;
 		for(String category : categories){
@@ -110,6 +110,26 @@ public class ArticleDaoTests extends AbstractDaoTest {
 			assertNotNull(articles);
 			assertEquals("Incorrect number of articles retrieved",2,articles.size());
 		}
+	}
+	
+	@Test
+	@Transactional
+	public void testGetMostViewed(){
+		Map<String,String> articles = articleDao.getByCategory("mostRead");
+		assertEquals(3, articles.size());
+		assertTrue(articles.containsKey("headline234"));
+		assertTrue(articles.containsKey("headline23"));
+		assertTrue(articles.containsKey("headline2"));
+	    
+	}
+	
+	@Test
+	@Transactional
+	public void testGetMostCommented(){
+		Map<String,String> articles = articleDao.getByCategory("mostComments");
+		assertEquals(2, articles.size());
+		assertTrue(articles.containsKey("headline1"));
+		assertTrue(articles.containsKey("headline2"));
 	}
 
 	@Test(expected=DuplicateHeadlineException.class)
