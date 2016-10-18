@@ -18,9 +18,9 @@ public abstract class AbstractArticleAction extends ActionSupport {
 	 */
 	private static final long serialVersionUID = 2104698531790319721L;
 
-	@Autowired
 	protected ArticleService service;
 	
+	@Autowired
 	public void setService(ArticleService service) {
 		this.service = service;
 	}
