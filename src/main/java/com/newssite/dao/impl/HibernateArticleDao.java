@@ -149,17 +149,24 @@ public class HibernateArticleDao extends AbstractHibernateDao<Article> implement
 
 	@Override
 	public Map<String,String> getByCategory(String category){
-		return getMap(createCriteria()
+	    if(category.equals("mostRead")){
+	        return getMostViewed();
+	    }else if(category.equals("mostComments")){
+	        return getMostCommented();
+	    }else{
+	        return getMap(createCriteria()
 		                          .add(Restrictions.eq("category",category))
 		                          .addOrder(Order.desc("lastEdited"))
 						          .setProjection(getCommonProjectionList())
 		                          .setMaxResults(3));
+	    }
 	}
 	
 
-
-	@Override
-	public Map<String, String> getMostCommented() {
+	/**
+	 * Returns articles sorted descending by comments.
+	 */
+	private Map<String, String> getMostCommented() {
 		  return getMap(createCriteria(Article.class,"article")
 		                            .createAlias("article.comments", "comments")
 		                            .setProjection(getCommonProjectionList().add(Projections.groupProperty("article.id"))
@@ -169,8 +176,10 @@ public class HibernateArticleDao extends AbstractHibernateDao<Article> implement
 		                            .setMaxResults(3));
 	}
 
-	@Override
-	public Map<String, String> getMostViewed() {
+	/**
+	 * Returns articles sorted descending by views.
+	 */
+	private Map<String, String> getMostViewed() {
 		  return getMap(createCriteria()
 									.setProjection(getCommonProjectionList())
 									.addOrder(Order.desc("hits"))
@@ -244,13 +253,14 @@ public class HibernateArticleDao extends AbstractHibernateDao<Article> implement
 	/**
 	 * Convenience method to update article paragraphs.
 	 * If a paragraph exists it only updates the paragraph's
-	 * message else it creates and adds a new paragraph to the action.
+	 * message else it creates and adds a new paragraph to the article.
 	 * @param article article to update
 	 * @param paragraphs a list of paragraph bodies
 	 */
 	private void updateParagraphs(Article article, List<String> paragraphs) {
 		
-		Iterator<Paragraph> it = article.getParagraphs().iterator();
+		Iterator<Paragraph> it = article.getParagraphs()
+		                                .iterator();
 		
 		int size = article.getParagraphs().size(),
 		    listSize = paragraphs.size();

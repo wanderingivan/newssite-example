@@ -94,20 +94,6 @@ public interface ArticleDao {
 	 List<Comment> loadArticleComments(String headline, int min);
 
 	 /**
-	  * Loads articles ordered by the number of their comments
-	  * @return a shortlist containing only the headline and imagePath of the article
-	  * @see Article
-	  */
-	 Map<String, String> getMostCommented();
-
-	 /**
-	  * Loads articles ordered by the number of their views
-	  * @return a shortlist containing only the headline and imagePath of the article
-	  * @see Article
-	  */
-	 Map<String, String> getMostViewed();
-
-	 /**
 	  * Updates the hit counter of articles
 	  * @param articleHits EntrySet containing an articles headline number of views and whether the hit count has been updated
 	  */

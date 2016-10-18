@@ -121,21 +121,6 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Override
 	@Transactional
-	@Cacheable(value="article_short", key="#root.methodName")
-	public Map<String, String> mostCommented() {
-		
-		return dao.getMostCommented();
-	}
-
-	@Override
-	@Transactional
-	@Cacheable(value="article_short", key="#root.methodName")
-	public Map<String, String> mostViewed() {
-		return dao.getMostViewed();
-	}
-
-	@Override
-	@Transactional
 	public List<Article> latest() {
 		return dao.latest();
 	}

@@ -38,8 +38,4 @@ public interface ArticleService {
 
 	public List<Comment> loadArticleComments(String headline, int min);
 
-	public Map<String, String> mostCommented();
-
-	public Map<String, String> mostViewed();
-
 }

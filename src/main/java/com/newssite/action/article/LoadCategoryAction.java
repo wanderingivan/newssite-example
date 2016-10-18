@@ -13,8 +13,6 @@ public class LoadCategoryAction extends AbstractArticleAction {
 	 */
 	private static final long serialVersionUID = -5444485359001669993L;
 	private static Logger logger = Logger.getLogger(LoadCategoryAction.class);
-	private static final String MOST_READ = "mostRead",
-			                    MOST_COMMENTS = "mostComments";
 	
 	private Map<String,String> articles; 
 	private String category;
@@ -22,19 +20,16 @@ public class LoadCategoryAction extends AbstractArticleAction {
 	@Action(value="loadCategory",results={@Result(name="success",location="/WEB-INF/content/jsp/article/category.jsp")})
 	public String execute(){
 		try{
-			if(logger.isDebugEnabled()){
-				logger.debug("Loading articles from category " + category);
+			if(logger.isTraceEnabled()){
+				logger.trace("Loading articles from category " + category);
 			}
-			if(category.equals(MOST_READ)){
-				articles = service.mostViewed();
-			}else if(category.equals(MOST_COMMENTS)){
-				articles = service.mostCommented();
-			}else{
-				articles = service.getByCategory(category);
-			}
+			articles = service.getByCategory(category);
+	        if(logger.isDebugEnabled()){
+	               logger.debug("Loaded articles from category " + category + "\n" +articles);
+	        }
 			return SUCCESS;
 		}catch(Exception e){
-			
+		    logger.error("Exception caught loading category " + category + "\n" + e);
 		}
 		return ERROR;
 	}
