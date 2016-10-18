@@ -17,7 +17,6 @@ import org.springframework.security.web.access.AccessDeniedHandlerImpl;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 
 import com.newssite.security.*;
 
@@ -31,7 +30,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
 	public void configure(AuthenticationManagerBuilder auth,DaoAuthenticationProvider provider) throws Exception {
 		auth.authenticationProvider(provider);
 	}
-	
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {

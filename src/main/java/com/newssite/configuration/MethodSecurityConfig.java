@@ -85,7 +85,6 @@ public class MethodSecurityConfig extends GlobalMethodSecurityConfiguration{
 	@Autowired
 	public AclCache aclCache(Cache cache){
 		return new SpringCacheBasedAclCache(cache, permissionStrategy(), aclAuthorizationStrategy());
-		//return new EhCacheBasedAclCache(ehCache, permissionStrategy(), aclAuthorizationStrategy());
 	}
 	
 	@Bean
@@ -121,9 +120,7 @@ public class MethodSecurityConfig extends GlobalMethodSecurityConfiguration{
 		return rh;
 	}
 	
-	/*
-	 * Note : this is assuming mysql is used as db 
-	 */
+	// XXX : This is assuming mysql is used as db 
 	private String classIdentityQuery(){
 		return "SELECT @@IDENTITY";
 	}
