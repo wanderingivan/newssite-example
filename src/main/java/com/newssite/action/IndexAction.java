@@ -43,7 +43,6 @@ public class IndexAction extends AbstractArticleAction {
 			setCarouselCategory("latest");
 			return SUCCESS;
 		}catch(Exception e){
-			e.printStackTrace();
 			logger.error("Error loading articles in indexAction "+ e);
 		}
 		return ERROR;
@@ -62,7 +61,6 @@ public class IndexAction extends AbstractArticleAction {
 			return SUCCESS;
 		}catch(Exception e){
 			logger.error("Error loading articles in indexAction "+ e);
-			logger.error(e.getStackTrace());
 		}
 		return ERROR;
 	}
@@ -79,7 +77,6 @@ public class IndexAction extends AbstractArticleAction {
 			return SUCCESS;
 		}catch(Exception e){
 			logger.error("Error loading articles in indexAction "+ e);
-			logger.error(e.getStackTrace());
 		}
 		return ERROR;
 	}
@@ -96,7 +93,6 @@ public class IndexAction extends AbstractArticleAction {
 			return SUCCESS;
 		}catch(Exception e){
 			logger.error("Error loading articles in indexAction "+ e);
-			logger.error(e.getStackTrace());
 		}
 		return ERROR;
 	}
@@ -113,7 +109,6 @@ public class IndexAction extends AbstractArticleAction {
 			return SUCCESS;
 		}catch(Exception e){
 			logger.error("Error loading articles in indexAction "+ e);
-			logger.error(e.getStackTrace());
 		}
 		return ERROR;
 	}

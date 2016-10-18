@@ -29,7 +29,9 @@ public class LockUserAction extends ActionSupport {
 
 	@Action(value="enableUser")
 	public String execute(){
-		logger.info("Locking user with username: " + username);
+	    if(logger.isInfoEnabled()){
+	        logger.info("Locking user with username: " + username);	        
+	    }
 		try{
 			service.enableUser(username);
 			return SUCCESS;
@@ -41,7 +43,9 @@ public class LockUserAction extends ActionSupport {
 
 	@Action(value="disableUser")
 	public String disableUser() {
-		logger.info("Locking user with username: " + username);
+        if(logger.isInfoEnabled()){
+            logger.info("Locking user with username: " + username);
+        }	    
 		try{
 			service.disableUser(username);
 			return SUCCESS;

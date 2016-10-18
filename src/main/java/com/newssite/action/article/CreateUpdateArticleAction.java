@@ -44,8 +44,9 @@ public class CreateUpdateArticleAction extends AbstractArticleAction implements 
 										   @Result(name="input", type="tiles", location="articleCreateLayout")})
 	public String createArticle(){
 		try{
-			
-			logger.info(String.format("Creating Article  %s by user %s with paragraphs %s ",article,user,articleParagraphs));
+	        if(logger.isInfoEnabled()){
+	            logger.info(String.format("Creating Article  %s by user %s with paragraphs %s ",article,user,articleParagraphs));
+	        }			
 			
 			if(articlePic != null){
 				String fileName= imageService.saveImage(articlePic, articlePicContentType, articlePicFileName);
@@ -83,7 +84,9 @@ public class CreateUpdateArticleAction extends AbstractArticleAction implements 
 										 @Result(name="input", type="tiles", location="editArticleInput")})
 	public String editArticle(){
 		try{
-			logger.info(String.format("User %s editing article %s", article,user));
+	        if(logger.isInfoEnabled()){
+	            logger.info(String.format("User %s editing article %s", article,user));
+	        }	            
 			if(articlePic != null){
 				String fileName = imageService.saveImage(articlePic, articlePicContentType, articlePicFileName);
 				article.setImagePath(fileName);

@@ -37,7 +37,9 @@ public class UserAuthorityAction extends ActionSupport implements AuthenticatedU
 	@Action(value="changeRole",results={@Result(name="success",type="redirectAction",params={"namespace","/user","actionName","loadUser","username","${username}"})})
 	public String execute(){
 		try{
-			logger.info(String.format("User %s changing user authority for %s to %s",actingUser,username,authority));
+	        if(logger.isInfoEnabled()){
+	            logger.info(String.format("User %s changing user authority for %s to %s",actingUser,username,authority));
+	        }            
 			service.changeAuthority(username,authority);
 		}catch(Exception e){
 			logger.error(String.format("Error changing user authority for %s to %s \n %s",username,authority,e));
