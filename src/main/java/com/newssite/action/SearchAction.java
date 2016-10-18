@@ -48,13 +48,30 @@ public class SearchAction extends ActionSupport{
 		logger.debug("Searching database with params " + query + " " + type);
 		try{
 			if(type.equals(article)){
-				if(isMissing()){setMessage(getText("global.missing_article"));}
-				else{setMessage(getText("global.articles_matching"));}
+				if(isMissing()){
+				    setMessage(
+				            getText("global.missing_article")
+				    );
+				}
+				else{
+				    setMessage(
+				            getText("global.articles_matching")
+				    );
+				}
+				
 				articles = articleService.findArticles(query);
 				return article;
 			}else if(type.equals(user)){
-				if(isMissing()){setMessage(getText("global.missing_user"));}
-				else{setMessage(getText("global.users_matching"));}
+				if(isMissing()){
+				    setMessage(
+				            getText("global.missing_user")
+				    );
+				}
+				else{
+				    setMessage(
+				            getText("global.users_matching")
+				    );
+				}
 				users = userService.findUsers(query);
 				return user;
 			}else{
