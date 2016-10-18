@@ -5,6 +5,7 @@ package com.newssite.service.impl;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 
@@ -21,6 +22,8 @@ import com.newssite.util.ImageUtil;
  *
  */
 public class ImageServiceImpl implements ImageService {
+	
+	private static Logger logger = Logger.getLogger(ImageServiceImpl.class);
 	
 	private String placeholderFilename;
 	private ImageUtil imageUtil;
@@ -43,12 +46,11 @@ public class ImageServiceImpl implements ImageService {
 		try{
 			return imageUtil.encodeToB64String(path);
 		}catch(IOException missingFile){
-			System.out.println("Cant open file "+ path);
 			try{
+			    logger.error("Cant open file " + path);
 			    return imageUtil.encodeToB64String(placeholderFilename);
 			}catch(IOException ignore){
-				System.out.println("Cant open file "+ placeholderFilename );
-				throw new RuntimeException("Can't open placeholder file ");
+				throw new IllegalArgumentException("Can't open placeholder file ");
 			}
 		}
 	}
@@ -64,12 +66,11 @@ public class ImageServiceImpl implements ImageService {
 		try{
 			return imageUtil.loadImage(path);
 		}catch(IOException missingFile){
-			System.out.println("Cant open file "+ path);
 			try{
+			    logger.error("Cant open file " + path);
 			    return imageUtil.loadImage(placeholderFilename);
 			}catch(IOException ignore){
-				System.out.println("Cant open file "+ placeholderFilename );
-				throw new RuntimeException("Can't open placeholder file ");
+				throw new IllegalArgumentException("Can't open placeholder file ");
 			}
 		}
 	}
@@ -78,7 +79,5 @@ public class ImageServiceImpl implements ImageService {
 	public String saveImage(File file, String contentType, String fileName) throws IOException{
 		 return imageUtil.saveImage(file, contentType, fileName);
 	}
-
-	
 	
 }
