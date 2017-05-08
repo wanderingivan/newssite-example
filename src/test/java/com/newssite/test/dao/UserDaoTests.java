@@ -41,7 +41,7 @@ public class UserDaoTests extends AbstractDaoTest {
 	@Test(expected=DuplicateUsernameException.class)
 	@Transactional
 	public void testCreateUserDuplicateUsernameException() {
-		userDao.createUser(new User("username2","","","",null));
+		userDao.createUser(new User("username2","some@email9","","",null));
 		User test = getUser(userToCreate);
 		assertEquals(userToCreate,test.getUsername());
 	}
@@ -118,8 +118,8 @@ public class UserDaoTests extends AbstractDaoTest {
 	@Test
 	@Transactional
 	public void testUserUnlock(){
-		User test = getUser("username3");
-		userDao.enableUser(userToLoad);
+		userDao.enableUser("username3");
+        User test = getUser("username3");
 		assertTrue("User was not enabled", test.getEnabled());
 	}	
 	

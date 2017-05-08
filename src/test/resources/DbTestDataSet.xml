@@ -9,10 +9,10 @@
 
 	<articles article_id="3" headline="headline1" caption="sometext" category="politics" imagePath="News.png" author_id="2" lastEdited="2016-09-08" hits="1"/>
 	<articles article_id="4" headline="headline2" caption="sometext" category="politics" imagePath="News.png" author_id="2" lastEdited="2016-09-01" hits="100"/>
-	<articles headline="headline23" caption="sometext" category="sports" imagePath="News.png" author_id="2" lastEdited="2016-09-05" hits="119"/>
-	<articles headline="headline234" caption="sometext" category="sports" imagePath="News.png" author_id="2" lastEdited="2016-09-05" hits="120"/>
-	<articles headline="headline3" caption="sometext" category="entertainment" imagePath="News.png" author_id="2" lastEdited="2016-09-04" hits="0"/>
-	<articles headline="headline6" caption="sometext" category="entertainment" imagePath="News.png" author_id="2" lastEdited="2016-09-04" hits="0"/>
+	<articles article_id="222" headline="headline23" caption="sometext" category="sports" imagePath="News.png" author_id="2" lastEdited="2016-09-05" hits="119"/>
+	<articles article_id="225" headline="headline234" caption="sometext" category="sports" imagePath="News.png" author_id="2" lastEdited="2016-09-05" hits="120"/>
+	<articles article_id="224" headline="headline3" caption="sometext" category="entertainment" imagePath="News.png" author_id="2" lastEdited="2016-09-04" hits="0"/>
+	<articles article_id="223" headline="headline6" caption="sometext" category="entertainment" imagePath="News.png" author_id="2" lastEdited="2016-09-04" hits="0"/>
 	<articles article_id="5" headline="headline4" caption="sometext" category="international" imagePath="350News.png" author_id="3" lastEdited="2016-09-02" hits="0"/>
 	<articles article_id="7" headline="headline7" caption="sometext" category="international" imagePath="350x350News.png" author_id="3" lastEdited="2016-09-02" hits="0"/>
 	

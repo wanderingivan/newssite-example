@@ -120,12 +120,11 @@ public class MethodSecurityConfig extends GlobalMethodSecurityConfiguration{
 		return rh;
 	}
 	
-	// XXX : This is assuming mysql is used as db 
 	private String classIdentityQuery(){
-		return "SELECT @@IDENTITY";
+	    return "SELECT LAST_INSERT_ID()";
 	}
 
 	private String sidIdentityQuery(){
-		return "SELECT @@IDENTITY";
+	    return "SELECT LAST_INSERT_ID()";
 	}
 }
