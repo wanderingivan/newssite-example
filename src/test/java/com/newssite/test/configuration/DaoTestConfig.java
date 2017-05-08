@@ -46,7 +46,7 @@ public class DaoTestConfig {
     @Bean
 	public Properties hibernateProperties(){
 		Properties p = new Properties();
-
+		p.put("hibernate.dialect","org.hibernate.dialect.H2Dialect");
 		p.put("hibernate.show_sql","false");
 		p.put("hibernate.format_sql","true");
 	
