@@ -52,7 +52,7 @@ CREATE TABLE paragraphs (
 
 CREATE TABLE comments (
 	comment_id BIGINT NOT NULL AUTO_INCREMENT,
-	message VARCHAR(150) NOT NULL,
+	message VARCHAR(250) NOT NULL,
 	posted TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	votes BIGINT NOT NULL DEFAULT 0,
 	poster_id BIGINT NOT NULL,
@@ -70,7 +70,7 @@ CREATE TABLE chats (
 
 CREATE TABLE messages (
     message_id BIGINT NOT NULL AUTO_INCREMENT,
-	message VARCHAR(150) NOT NULL,
+	message VARCHAR(250) NOT NULL,
 	posted TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	poster_id BIGINT NOT NULL,
 	chat_id BIGINT NOT NULL,
@@ -135,51 +135,48 @@ INSERT INTO group_authorities(group_id,authority) VALUES(3,'ROLE_ADMIN');
 
 -- Spring Acl Required Tables
 
-CREATE TABLE `acl_sid` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `principal` tinyint(1) NOT NULL,
-  `sid` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `unique_uk_1` (`sid`,`principal`)
+CREATE TABLE acl_sid (
+  id bigint(20) NOT NULL AUTO_INCREMENT,
+  principal tinyint(1) NOT NULL,
+  sid varchar(100) NOT NULL,
+  PRIMARY KEY (id),
+  UNIQUE KEY unique_uk_1 (sid,principal)
 );
 
-CREATE TABLE `acl_class` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `class` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `unique_uk_2` (`class`)
+CREATE TABLE acl_class (
+  id bigint(20) NOT NULL AUTO_INCREMENT,
+  class varchar(255) NOT NULL,
+  PRIMARY KEY (id),
+  UNIQUE KEY unique_uk_2 (class)
 );
 
-CREATE TABLE `acl_object_identity` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `object_id_class` bigint(20) NOT NULL,
-  `object_id_identity` bigint(20) NOT NULL,
-  `parent_object` bigint(20) DEFAULT NULL,
-  `owner_sid` bigint(20) DEFAULT NULL,
-  `entries_inheriting` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `unique_uk_3` (`object_id_class`,`object_id_identity`),
-  KEY `foreign_fk_1` (`parent_object`),
-  KEY `foreign_fk_3` (`owner_sid`),
-  CONSTRAINT `foreign_fk_1` FOREIGN KEY (`parent_object`) REFERENCES `acl_object_identity` (`id`),
-  CONSTRAINT `foreign_fk_2` FOREIGN KEY (`object_id_class`) REFERENCES `acl_class` (`id`),
-  CONSTRAINT `foreign_fk_3` FOREIGN KEY (`owner_sid`) REFERENCES `acl_sid` (`id`)
+CREATE TABLE acl_object_identity (
+  id bigint(20) NOT NULL AUTO_INCREMENT,
+  object_id_class bigint(20) NOT NULL,
+  object_id_identity bigint(20) NOT NULL,
+  parent_object bigint(20) DEFAULT NULL,
+  owner_sid bigint(20) DEFAULT NULL,
+  entries_inheriting tinyint(1) NOT NULL,
+  PRIMARY KEY (id),
+  UNIQUE KEY unique_uk_3 (object_id_class,object_id_identity),
+  CONSTRAINT foreign_fk_1 FOREIGN KEY (parent_object) REFERENCES acl_object_identity (id),
+  CONSTRAINT foreign_fk_2 FOREIGN KEY (object_id_class) REFERENCES acl_class (id),
+  CONSTRAINT foreign_fk_3 FOREIGN KEY (owner_sid) REFERENCES acl_sid (id)
 );
 
-CREATE TABLE `acl_entry` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `acl_object_identity` bigint(20) NOT NULL,
-  `ace_order` int(11) NOT NULL,
-  `sid` bigint(20) NOT NULL,
-  `mask` int(11) NOT NULL,
-  `granting` tinyint(1) NOT NULL,
-  `audit_success` tinyint(1) NOT NULL,
-  `audit_failure` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `unique_uk_4` (`acl_object_identity`,`ace_order`),
-  KEY `foreign_fk_5` (`sid`),
-  CONSTRAINT `foreign_fk_4` FOREIGN KEY (`acl_object_identity`) REFERENCES `acl_object_identity` (`id`),
-  CONSTRAINT `foreign_fk_5` FOREIGN KEY (`sid`) REFERENCES `acl_sid` (`id`)
+CREATE TABLE acl_entry (
+  id bigint(20) NOT NULL AUTO_INCREMENT,
+  acl_object_identity bigint(20) NOT NULL,
+  ace_order int(11) NOT NULL,
+  sid bigint(20) NOT NULL,
+  mask int(11) NOT NULL,
+  granting tinyint(1) NOT NULL,
+  audit_success tinyint(1) NOT NULL,
+  audit_failure tinyint(1) NOT NULL,
+  PRIMARY KEY (id),
+  UNIQUE KEY unique_uk_4 (acl_object_identity,ace_order),
+  CONSTRAINT foreign_fk_4 FOREIGN KEY (acl_object_identity) REFERENCES acl_object_identity (id),
+  CONSTRAINT foreign_fk_5 FOREIGN KEY (sid) REFERENCES acl_sid (id)
 );
 
 
