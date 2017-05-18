@@ -39,7 +39,7 @@
 
 			  <sec:authorize access="isAnonymous()">
   		      <li class="user-control">
-  		        <a data-toggle="modal" href="#" data-target="#loginModal" class="btn-category"><s:text name="global.log_in"/></a>
+  		        <a id="loginModalLink" data-toggle="modal" href="#" data-target="#loginModal" class="btn-category"><s:text name="global.log_in"/></a>
   		      </li>
   		      </sec:authorize>
           
@@ -61,7 +61,7 @@
 		        </sec:authorize>
 		      	<li class="user-control">
 		        <form action="/NewsSite/logout" method="POST">
-  				  <input class="btn-logout" type="submit" value="Log out" />
+  				  <input id="logoutSubmit" class="btn-logout" type="submit" value="Log out" />
     			  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			    </form>
 			    </li>
@@ -92,14 +92,14 @@
          		<form action="/NewsSite/login" method="POST" name="login" class="form-inline">
          		  <div class="form-group">
          		    <i class="fa fa-user"></i>
-         		  	<s:textfield name="username" value="" placeholder="%{getText('global.username')}"/>
+         		  	<s:textfield id="m_username" name="username" value="" placeholder="%{getText('global.username')}"/>
          		  </div>
 				  <div class="form-group">
          		    <i class="fa fa-key"></i>
-         		  	<s:password name="password" placeholder="%{getText('global.password')}"/>
+         		  	<s:password id="m_password" name="password" placeholder="%{getText('global.password')}"/>
          		  </div>
 			      <s:hidden name="%{#attr._csrf.parameterName}" value="%{#attr._csrf.token}"/>
-         		  <s:submit key="global.log_in" cssClass="btn btn-form"/>
+         		  <s:submit id="m_loginSubmit" key="global.log_in" cssClass="btn btn-form"/>
          		</form>
          	</div>
          	 
@@ -110,24 +110,24 @@
 		      	<s:form theme="simple" action="createUser" namespace="/user" enctype="multipart/form-data">
          		  <div class="form-group">
          		    <i class="fa fa-user"></i>
-	    	  	  	<s:textfield name="username" value="" placeholder="%{getText('global.username')}"/>
+	    	  	  	<s:textfield id="m_create_username"  name="username" value="" placeholder="%{getText('global.username')}"/>
          		  </div>
          		  <div class="form-group">
          		    <i class="fa fa-envelope"></i>
-	      	  	  	<s:textfield name="email" placeholder="%{getText('global.email')}"/>
+	      	  	  	<s:textfield id="m_create_email" name="email" placeholder="%{getText('global.email')}"/>
          		  </div>
          		  <div class="form-group">
          		    <i class="fa fa-pencil-square-o"></i>
-	      	      	<s:textarea name="description" placeholder="%{getText('global.description')}"/>
+	      	      	<s:textarea id="m_create_description" name="description" placeholder="%{getText('global.description')}"/>
          		  </div>
          		  <div class="form-group">
          		    <i class="fa fa-key"></i>
-	      	  	  	<s:password name="password" placeholder="%{getText('global.password')}"/>
+	      	  	  	<s:password id="m_create_password" name="password" placeholder="%{getText('global.password')}"/>
          		  </div>
 	      	  	  <s:label for="profilePic" key="global.profilePic"/>
 	      	  	  <s:file name="profilePic"  accept="image/png"/>
 			      <s:hidden name="%{#attr._csrf.parameterName}" value="%{#attr._csrf.token}"/>
-	      	  	  <s:submit key="global.sign_up" cssClass="btn btn-form"/>
+	      	  	  <s:submit id="m_createSubmit" key="global.sign_up" cssClass="btn btn-form"/>
 	      		</s:form>
          	</div> 
 

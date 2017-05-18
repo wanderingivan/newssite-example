@@ -11,20 +11,20 @@
 	      	<s:form id="articleForm" cssClass="form-wrapper alt" theme="simple" action="createArticle" namespace="/article" enctype="multipart/form-data">
 			  <div class="form-group">
                 <s:label for="article.headline" key="global.headline"/>
-                <s:fielderror fieldName="article.headline" cssClass="alert alert-danger"/>
-	      	    <s:textfield name="article.headline" placeholder="%{getText('global.headline')}" />
+                <s:fielderror id="headlineError" fieldName="article.headline" cssClass="alert alert-danger"/>
+	      	    <s:textfield id="headline" name="article.headline" placeholder="%{getText('global.headline')}" />
               </div>
               <div class="form-group">
-                <s:fielderror fieldName="article.category" cssClass="alert alert-danger"/>
-			    <s:select name="article.category" pattern="politics|international|entertainment|sport"
-			  			headerKey = "-1" headerValue="%{getText('global.select_category')}"
-			  			list= "#{'politics':'politics','international':'international','sports':'sports','entertainment':'entertainment'}"
+                <s:fielderror id="headlineError" fieldName="article.category" cssClass="alert alert-danger"/>
+			    <s:select id="category"  name="article.category" pattern="politics|international|entertainment|sport"
+			  			  headerKey = "-1" headerValue="%{getText('global.select_category')}"
+			  			  list= "#{'politics':'politics','international':'international','sports':'sports','entertainment':'entertainment'}"
 			    />
 			  </div>
               <div class="form-group">
 			    <s:label key="global.caption"/>
-                <s:fielderror fieldName="article.caption" cssClass="alert alert-danger"/>
-	      	    <s:textarea name="article.caption" placeholder="%{getText('global.caption')}"/>
+                <s:fielderror id="captionError" fieldName="article.caption" cssClass="alert alert-danger"/>
+	      	    <s:textarea id="caption" name="article.caption" placeholder="%{getText('global.caption')}"/>
               </div>
               <s:if test="articleParagraphs == null">
               <div class="form-group paragraph">
@@ -55,7 +55,7 @@
 	      	    <s:file name="articlePic" accept="image/jpeg, image/png"/>
               </div>	      
 			  <s:hidden name="%{#attr._csrf.parameterName}" value="%{#attr._csrf.token}"/>
-	      	  <s:submit key="global.create" cssClass="btn btn-form"/>
+	      	  <s:submit id="createArticleSubmit" key="global.create" cssClass="btn btn-form"/>
 	      	  <s:submit name="preview" key="global.preview" action="preview" cssClass="btn btn-form"/>
 	      	</s:form>
 	      	</div>

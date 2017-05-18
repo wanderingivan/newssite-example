@@ -23,7 +23,7 @@
       
       	<ol class="breadcrumb">
       	  <li><s:a namespace="/index" action="latest"><s:text name="global.home"/></s:a></li>
-      	  <li><s:a namespace="/index" href="%{article.category}" style="text-transform:capitalize;"><s:text name="global.%{article.category}"/></s:a></li>
+      	  <li><s:a id="article_category" namespace="/index" href="%{article.category}" style="text-transform:capitalize;"><s:text name="global.%{article.category}"/></s:a></li>
       	  <li>${article.headline}</li>
       	</ol>
 
@@ -43,7 +43,7 @@
  	 	<div class="tab-content">
 
  	 	  <div  id="article" class="tab-pane fade in active">
- 	 	    <h2 class="article_title">${article.headline}</h2>
+ 	 	    <h2 id="article_headline" class="article_title">${article.headline}</h2>
  	 	    <div class="article_img">
  	 	      <img class="thumbnail" alt="Article Image" src="<s:property value='#loadArticleImage'/>"/>
  	 	    </div>
@@ -56,7 +56,7 @@
  	      	      </div>
  	      	      <div class="info">
  	      	      	<p>Author:</p>
- 	      	      	<s:a href="%{showAuthor}">${article.author.username}</s:a>
+ 	      	      	<s:a id="author_username" href="%{showAuthor}">${article.author.username}</s:a>
  	      	      </div>
  	 	       	 </div>
  	 	       	 <div class="col-md-3 col-sm-3 col-xs-6">
@@ -89,7 +89,7 @@
  	 	       </div>
  	 	      </div>
  	 	      <div class="article_caption">
- 	 	        <b>${article.caption}</b>
+ 	 	        <b id="article_caption">${article.caption}</b>
  	 	      </div>
  	 	      <div class="article_paragraphs"> 	 	       
  	          	<s:iterator value="article.paragraphs">

@@ -20,7 +20,7 @@
           </div>
           <div class="tab-content">
            	<div  id="user" class="tab-pane fade in active">
-      	  	  <h2 class="user_title"><s:text name="global.profile"/></h2>
+      	  	  <h2 id="userTitle" class="user_title"><s:text name="global.profile"/></h2>
       	  	  <div class="user_main">
       	        <div class="user_main_right">
       	  		<sec:authorize access="isAuthenticated() and (hasRole('ROLE_ADMIN') or authentication.name=='${user.username}')">
@@ -30,7 +30,7 @@
       	  			<s:a href="%{loadMessages}"><s:text name="global.your_messages"/></s:a>
       	  		</sec:authorize>
 			      <h4><s:text name="global.about_me"/></h4>
-			      <p>${user.details}</p>
+			      <p id="userDescription">${user.details}</p>
  	            <sec:authorize access="isAuthenticated() and authentication.name !='${user.username}'">
       	          <div  id="sendButton" class="btn btn-showForm"><s:text name="global.send_message"/></div>
       	          <div  class="sendForm form-group" style="display:none">

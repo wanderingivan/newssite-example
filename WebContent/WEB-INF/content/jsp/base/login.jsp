@@ -10,15 +10,15 @@
     <form class="form-inline" action="/NewsSite/login" style="simple" method="POST" name="login">
       <div class="form-group">
         <i class="fa fa-user"></i>
-        <s:textfield name="username" value="" placeholder="%{getText('global.username')}"/>
+        <s:textfield id="f_username" name="username" value="" placeholder="%{getText('global.username')}"/>
       </div>
       <div class="form-group">
         <i class="fa fa-key"></i>
-        <s:password name="password" placeholder="%{getText('global.password')}"/>
+        <s:password  id="f_password"  name="password" placeholder="%{getText('global.password')}"/>
       </div>
 	  <s:hidden name="%{#attr._csrf.parameterName}" value="%{#attr._csrf.token}"/>
 	  <div class="form-group">
-	    <button type="submit" class="btn btn-form" style="width:100%;"><s:text name="global.log_in"/></button>
+	    <button id="loginSubmit" type="submit" class="btn btn-form" style="width:100%;"><s:text name="global.log_in"/></button>
       </div>
     </form>
   </div>
