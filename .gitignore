@@ -5,4 +5,8 @@ target/
 .classpath
 .project
 .settings/
-/build/
+.tern-project
+build/
+logs/
+phantomjsdriver.log
+/target/
