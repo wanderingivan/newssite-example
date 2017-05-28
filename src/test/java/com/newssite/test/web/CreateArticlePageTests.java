@@ -15,7 +15,7 @@ import com.newssite.test.web.page.LoginPage;
 
 @RunAsClient
 @RunWith(Arquillian.class)
-public class CreateArticlePageITTests extends AbstractWebPageTest {
+public class CreateArticlePageTests extends AbstractWebPageTest {
     
     @Page
     CreateArticlePage cPage;

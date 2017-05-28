@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 
 @RunAsClient
 @RunWith(Arquillian.class)
-public class CreateUserPageITTests extends AbstractWebPageTest {
+public class CreateUserPageTests extends AbstractWebPageTest {
 
     
     @Page
