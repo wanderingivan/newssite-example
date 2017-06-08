@@ -11,11 +11,11 @@ import org.junit.runner.RunWith;
 
 import com.newssite.test.web.page.ArticlePage;
 import com.newssite.test.web.page.CreateArticlePage;
-import com.newssite.test.web.page.LoginPage;
+import com.newssite.test.web.page.LoginPageForm;
 
 @RunAsClient
 @RunWith(Arquillian.class)
-public class CreateArticlePageITTests extends AbstractWebPageTest {
+public class CreateArticlePageTests extends AbstractWebPageTest {
     
     @Page
     CreateArticlePage cPage;
@@ -24,9 +24,10 @@ public class CreateArticlePageITTests extends AbstractWebPageTest {
     ArticlePage aPage;
     
     @Test
-    public void testCreateArticle(@InitialPage LoginPage login){
+    public void testCreateArticle(@InitialPage LoginPageForm login){
 
         login.logoutIfAuthenticated();
+        loadPage("/user/loginPage");
         login.loginIfNotAuthenticated("username2", "password");
         
         loadPage("/article/createArticlePage");
@@ -40,9 +41,10 @@ public class CreateArticlePageITTests extends AbstractWebPageTest {
     }
     
     @Test
-    public void testCreateArticleAccessDeniedException(@InitialPage LoginPage login){
+    public void testCreateArticleAccessDeniedException(@InitialPage LoginPageForm login){
 
         login.logoutIfAuthenticated();
+        loadPage("/user/loginPage");
         login.login("username1", "password");
 
         loadPage("/article/createArticlePage");
@@ -53,8 +55,9 @@ public class CreateArticlePageITTests extends AbstractWebPageTest {
     }
     
     @Test
-    public void testCreateArticleInputErrors(@InitialPage LoginPage login){
+    public void testCreateArticleInputErrors(@InitialPage LoginPageForm login){
         login.logoutIfAuthenticated();
+        loadPage("/user/loginPage");
         login.loginIfNotAuthenticated("username2", "password");
         
         loadPage("/article/createArticlePage");

@@ -9,14 +9,14 @@ import org.junit.runner.RunWith;
 
 import com.newssite.test.web.page.CreateUserPageForm;
 import com.newssite.test.web.page.CreateUserPageModal;
-import com.newssite.test.web.page.LoginPage;
+import com.newssite.test.web.page.LoginPageForm;
 import com.newssite.test.web.page.UserPage;
 
 import static org.junit.Assert.*;
 
 @RunAsClient
 @RunWith(Arquillian.class)
-public class CreateUserPageITTests extends AbstractWebPageTest {
+public class CreateUserPageTests extends AbstractWebPageTest {
 
     
     @Page
@@ -31,7 +31,7 @@ public class CreateUserPageITTests extends AbstractWebPageTest {
 
     
     @Test
-    public void testCreateUserAcessDeniedException(@InitialPage LoginPage login){
+    public void testCreateUserAcessDeniedException(@InitialPage LoginPageForm login){
         login.loginIfNotAuthenticated("username1", "password");
         loadPage("/user/createUserPage");
         formCPage.createUser("username6", "password", "email@email6.com", "description");
@@ -40,14 +40,15 @@ public class CreateUserPageITTests extends AbstractWebPageTest {
     
     
     @Test
-    public void testCreateUser(@InitialPage LoginPage login){
+    public void testCreateUser(@InitialPage LoginPageForm login){
         login.logoutIfAuthenticated();
-        cPage.createUser("username6", "password", "email@email6.com", "description");
+        loadPage("/user/createUserPage");
+        formCPage.createUser("username6", "password", "email@email6.com", "description");
         assertEquals("username6's Profile", uPage.getUsername());
     }
 
     @Test
-    public void testCreateUserInputErrors(@InitialPage LoginPage login){
+    public void testCreateUserInputErrors(@InitialPage LoginPageForm login){
         login.logoutIfAuthenticated();
         loadPage("/user/createUserPage");
         formCPage.createUser("", "", "email@email6", "description");

@@ -1,38 +1,28 @@
 package com.newssite.test.web.page;
 
+import org.jboss.arquillian.graphene.Graphene;
 import org.jboss.arquillian.graphene.GrapheneElement;
 import org.jboss.arquillian.graphene.page.Location;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.jboss.arquillian.graphene.Graphene;
 
+@Location("NewsSite/user/loginPage")
+public class LoginPageForm {
 
-@Location("NewsSite")
-public class LoginPage {
-
-    @FindBy(id="m_username")
+    @FindBy(id="f_username")
     private WebElement usernameInput;
 
-    @FindBy(id="m_password")
+    @FindBy(id="f_password")
     private WebElement passwordInput;
     
-    @FindBy(id="m_loginSubmit")
+    @FindBy(id="loginSubmit")
     private WebElement loginSubmit;
     
     @FindBy(id="logoutSubmit")
     private GrapheneElement logout;
     
-    @FindBy(id="loginModalLink")
-    private GrapheneElement modalCall;
-    
     public void login(String username, String password){
-        this.modalCall.click();
-        
-        Graphene.waitGui()
-                .until()
-                .element(usernameInput)
-                .is()
-                .visible();
+
         
         this.usernameInput.clear();
         this.passwordInput.clear();
@@ -44,7 +34,7 @@ public class LoginPage {
     }
     
     public void loginIfNotAuthenticated(String username, String password){
-        if(modalCall.isPresent()){
+        if(!logout.isPresent()){
             login(username,password);
         }
     }
