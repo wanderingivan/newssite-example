@@ -2,6 +2,8 @@ package com.newssite.action.user;
 
 import java.io.File;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,8 +19,9 @@ import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.InterceptorRef;
+import org.apache.struts2.interceptor.ServletRequestAware;
 
-public class CreateUpdateUserAction extends AbstractUserAction implements ModelDriven<User>, AuthenticatedUserAware,Preparable{
+public class CreateUpdateUserAction extends AbstractUserAction implements AuthenticatedUserAware, ServletRequestAware, Preparable, ModelDriven<User>{
 	
 	/**
 	 * 
@@ -34,6 +37,8 @@ public class CreateUpdateUserAction extends AbstractUserAction implements ModelD
 	private String profilePicContentType,
 				   profilePicFileName,
 				   actingUser;
+	
+	private HttpServletRequest http;
 	
 	private User user;
 
@@ -84,6 +89,7 @@ public class CreateUpdateUserAction extends AbstractUserAction implements ModelD
 				user.setImagePath(fileName);
 			}
 			service.editUser(user);
+			http.logout();
 			return SUCCESS;
 			
 		}catch(DuplicateEmailException de){
@@ -167,5 +173,10 @@ public class CreateUpdateUserAction extends AbstractUserAction implements ModelD
 	public void setUser(String username) {
 		this.actingUser = username;
 	}
+
+    @Override
+    public void setServletRequest(HttpServletRequest http) {
+       this.http = http; 
+    }
 	
 }
