@@ -73,7 +73,7 @@
  	        <s:actionerror/>
  	        <div class="form-wrapper" style="margin:20px;">
 	      	  <h3 class="text-center"><s:text name="global.create_article"/></h3>
-	      	  <s:form id="articleForm" theme="simple" action="editArticle" namespace="/article" enctype="multipart/form-data" cssClass="form-wrapper alt">
+	      	  <s:form id="articleForm" theme="simple" action="createArticle" namespace="/article" enctype="multipart/form-data" cssClass="form-wrapper alt">
                 <div class="form-group">
 	      		  <s:label for="article.headline" key="global.headline"/>
 	      	      <s:textfield name="article.headline" value="%{article.headline}"/>

@@ -1,5 +1,6 @@
 package com.newssite.dao.impl;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +40,7 @@ public class HibernateUserDao extends AbstractHibernateDao<User> implements User
 		try{
 			Session session = getSession();
 			user.setEnabled(true);
+			user.setCreatedOn(new Date());
 			session.persist(user);
 			SQLQuery query  =(SQLQuery) session.createSQLQuery("INSERT into group_members(username,group_id) VALUES(:username,:group_id)")
 			                               	   .setString("username", user.getUsername())

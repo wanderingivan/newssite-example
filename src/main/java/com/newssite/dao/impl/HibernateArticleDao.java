@@ -57,6 +57,7 @@ public class HibernateArticleDao extends AbstractHibernateDao<Article> implement
 
 		User user = (User) crit.uniqueResult();
 		article.setAuthor(user);
+		article.setLastEdited(new Timestamp(System.currentTimeMillis()));
 		setParagraphs(article,paragraphs);
 		try{
 			session.persist(article);

@@ -69,8 +69,8 @@ public class CreateUpdateArticleAction extends AbstractArticleAction implements 
 	public String preview(){
 		try{
 			if(articlePic != null){
-				imageService.saveImage(articlePic, articlePicContentType, articlePicFileName);
-				article.setImagePath(articlePicFileName);
+				String fileName = imageService.saveImage(articlePic, articlePicContentType, articlePicFileName);
+				article.setImagePath(fileName);
 			}
 			return SUCCESS;
 		}catch(Exception e){
