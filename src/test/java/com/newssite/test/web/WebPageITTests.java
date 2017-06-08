@@ -6,8 +6,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({CreateArticlePageTests.class,
-               CreateUserPageTests.class,
-               EditArticlePageTests.class})
+               CreateUserPageTests.class})
 public class WebPageITTests {
 
 }

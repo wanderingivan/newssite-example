@@ -53,7 +53,6 @@ public class LoginPage {
         if(logout.isPresent()){
             Graphene.guardHttp(logout).click();
         }
-        
     }
     
 }
