@@ -10,7 +10,7 @@
 	  <div class="">
 
 		<div class="row">
-          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+          <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
             <div class="article_content">
       	      <ol class="breadcrumb">
       	        <li><s:a href="#">Home</s:a></li>
@@ -69,11 +69,11 @@
  	        </div><!-- /Main -->	 
           </div>
           </div>
-	      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+	      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
  	        <s:actionerror/>
  	        <div class="form-wrapper" style="margin:20px;">
 	      	  <h3 class="text-center"><s:text name="global.create_article"/></h3>
-	      	  <s:form id="articleForm" theme="simple" action="editArticle" namespace="/article" enctype="multipart/form-data">
+	      	  <s:form id="articleForm" theme="simple" action="editArticle" namespace="/article" enctype="multipart/form-data" cssClass="form-wrapper alt">
                 <div class="form-group">
 	      		  <s:label for="article.headline" key="global.headline"/>
 	      	      <s:textfield name="article.headline" value="%{article.headline}"/>
