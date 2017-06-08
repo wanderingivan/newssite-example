@@ -19,7 +19,7 @@
 						  <img alt="img" src="<s:property value='#loadImage'/>"/>
 					    </a>
 					    <div class="media-body">
-						  <div class="media-heading">
+						  <div class="media-heading sidecolumn">
 						    <s:a href="%{showUserUrl}"><h5><s:property value="poster.username"/>&nbsp;<s:text name="global.said"/></h5></s:a>
 						    <p><s:property value="message"/></p>
 						    <p class="text-muted"><s:date name="posted" nice="true"/></p>

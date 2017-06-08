@@ -21,7 +21,7 @@
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.5.7/slick.css"/>
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.5.7/slick-theme.css"/>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/newssite.min.css"/>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/newssite.css"/>
 	
 	<title><tiles:insertAttribute name="title"/></title>
 

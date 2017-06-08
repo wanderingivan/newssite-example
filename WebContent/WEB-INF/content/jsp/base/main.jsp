@@ -55,7 +55,7 @@
 		  </div>
 		</div>
 		<div class="row">
-		  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+		  <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
 		  	<div class="other_categories">
 		  	
 			 <div class="row">
@@ -96,7 +96,7 @@
       			          <div class="media-body">
       			            <s:a href="%{articleUrl}"><h4 class="post_title"><s:property value="headline"/></h4></s:a>
 	  			      		<p class="cat-p hidden-xs">
-	  			        	  <s:if test="caption.length > 75">
+	  			        	  <s:if test="caption.length() > 75">
 	  			          		<s:property value="caption.substring(0,75)"/>...
 	  			        	  </s:if>
 	  			        	  <s:else>
@@ -158,7 +158,7 @@
 					<div class="media-body">
       			      <s:a href="%{articleUrl}"><h4 class="post_title"><s:property value="headline"/></h4></s:a>
 	  			      <p class="cat-p hidden-xs">
-	  			        <s:if test="caption.length > 75">
+	  			        <s:if test="caption.length() > 75">
 	  			          <s:property value="caption.substring(0,75)"/>...
 	  			        </s:if>
 	  			        <s:else>
@@ -211,7 +211,7 @@
 					<div class="media-body">
       			      <s:a href="%{articleUrl}"><h4 class="post_title"><s:property value="headline"/></h4></s:a>
 	  			      <p class="cat-p hidden-xs">
-	  			        <s:if test="caption.length > 75">
+	  			        <s:if test="caption.length() > 75">
 	  			          <s:property value="caption.substring(0,75)"/>...
 	  			        </s:if>
 	  			        <s:else>
@@ -270,7 +270,7 @@
       			          <div class="media-body">
       			            <s:a href="%{articleUrl}"><h4 class="post_title"><s:property value="headline"/></h4></s:a>
 	  			      		<p class="cat-p hidden-xs">
-	  			        	  <s:if test="caption.length > 75">
+	  			        	  <s:if test="caption.length() > 75">
 	  			          		<s:property value="caption.substring(0,75)"/>...
 	  			        	  </s:if>
 	  			        	  <s:else>
@@ -289,7 +289,7 @@
 
 		  	</div>
 		  </div>
-		  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+		  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 		    <div class="sidebar_column">
 			  <ul class="nav nav-tabs sidebar-tabs" role="tablist">
 				<li class="active" role="presentation">

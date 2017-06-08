@@ -563,6 +563,10 @@ img {
 		bottom: 30px;
 }
 
+.media-heading.sidecolumn{
+	margin-right:5px;
+}
+
 .credits .media .media-body a:first-child {
 	font-family:Garamond;
 	font-size:18px;
@@ -741,6 +745,7 @@ ul {
 }
 .other_categories {
 	background-color : #fff;
+	margin-bottom : 5px;
 }
 
 .sidebar {
