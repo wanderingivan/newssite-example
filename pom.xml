@@ -642,7 +642,7 @@
                   <url>${db.url}</url>
                   <autocommit>true</autocommit>
                   <srcFiles>
-                    <srcFile>${sql.dir}/create_preset_db.sql</srcFile>
+                    <srcFile>${sql.dir}/create_preset_my.sql</srcFile>
                   </srcFiles>
                   <skip>${build.preset.skip}</skip>
                 </configuration>

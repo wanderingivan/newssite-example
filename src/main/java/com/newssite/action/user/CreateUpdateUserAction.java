@@ -72,7 +72,6 @@ public class CreateUpdateUserAction extends AbstractUserAction implements Authen
 			
 		}catch(Exception e){
 			logger.error("Error creating user " + user + "\n" + e);
-			e.printStackTrace();
 		}
 		return ERROR;
 	}
